@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, AlertCircle, Loader2, ArrowRight } from "lucide-react";
 
@@ -8,6 +8,7 @@ const App = () => {
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const [formData, setFormData] = useState({
     inquiry: "",
@@ -23,11 +24,44 @@ const App = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
+    setErrorMsg("");
 
     try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inquiry: formData.inquiry,
+          region: formData.region,
+          name: formData.firstName,
+          location: formData.location,
+          phone: formData.phone,
+          email: formData.email,
+          description: formData.description,
+          newsletter: formData.newsletter,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Submission failed.");
+      }
+
       setStatus("success");
-    } catch (error) {
+      setFormData({
+        inquiry: "",
+        region: "",
+        firstName: "",
+        location: "",
+        phone: "",
+        email: "",
+        description: "",
+        newsletter: false,
+      });
+    } catch (error: any) {
       console.error("Submission failed:", error);
+      setErrorMsg(error.message || "Something went wrong. Please try again.");
       setStatus("error");
     }
   };
@@ -251,8 +285,8 @@ const App = () => {
                   {status === "error" && (
                     <div className="flex items-center gap-2 text-red-500 bg-red-50 p-4 rounded text-sm">
                       <AlertCircle size={18} />
-                      Something went wrong. Please check your connection or try
-                      again.
+                      {errorMsg ||
+                        "Something went wrong. Please check your connection or try again."}
                     </div>
                   )}
 
@@ -278,9 +312,13 @@ const App = () => {
                       </span>
                       <div className="bg-white rounded-full p-2 text-brand-primary transition-transform group-hover:translate-x-2">
                         {status === "submitting" ? (
-                          <Loader2 className="animate-spin" size={18} />
+                          <Loader2
+                            className="animate-spin"
+                            size={18}
+                            style={{ color: "#1a1a1a" }}
+                          />
                         ) : (
-                          <ArrowRight size={18} />
+                          <ArrowRight size={18} style={{ color: "#1a1a1a" }} />
                         )}
                       </div>
                     </button>

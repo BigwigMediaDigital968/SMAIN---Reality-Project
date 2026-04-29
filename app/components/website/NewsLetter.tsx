@@ -10,7 +10,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-const App = () => {
+const NewsLetter = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -170,4 +170,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default NewsLetter;

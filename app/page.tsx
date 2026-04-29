@@ -8,6 +8,7 @@ import HomeProject from "./components/website/home/HomeProjects";
 import Footer from "./components/website/Footer";
 import HomeTestimonial from "./components/website/home/HomeTestimonial";
 import HomeLeadForm from "./components/website/home/HomeLeadForm";
+import NewsLetter from "./components/website/NewsLetter";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <HomeProject />
       <HomeTestimonial />
       <HomeLeadForm />
+      <NewsLetter />
       <Footer />
     </>
   );

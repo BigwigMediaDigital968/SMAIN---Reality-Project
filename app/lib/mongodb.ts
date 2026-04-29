@@ -1,0 +1,25 @@
+import mongoose from "mongoose";
+
+const MONGODB_URI = process.env.MONGODB_URI!;
+
+if (!MONGODB_URI) {
+  throw new Error("Please define MONGODB_URI in .env.local");
+}
+
+// Prevent multiple connections in Next.js dev (hot reload)
+declare global {
+  var _mongooseConn: typeof mongoose | null;
+}
+
+let cached = global._mongooseConn;
+
+export async function connectDB() {
+  if (cached) return cached;
+
+  cached = await mongoose.connect(MONGODB_URI, {
+    dbName: "smain-reality",
+  });
+
+  global._mongooseConn = cached;
+  return cached;
+}
