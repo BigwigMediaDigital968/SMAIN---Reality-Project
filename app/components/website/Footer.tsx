@@ -19,14 +19,10 @@ const Footer = () => {
 
   const links = {
     navigation: [
-      { name: "For Designers", href: "#" },
-      { name: "Hire Talent", href: "#" },
-      { name: "Inspiration", href: "#" },
-      { name: "Advertising", href: "#" },
-      { name: "Blog", href: "#" },
-      { name: "About", href: "#" },
-      { name: "Careers", href: "#" },
-      { name: "Support", href: "#" },
+      { name: "Contact", href: "/contact-us" },
+      { name: "Know about us", href: "/about-us" },
+      { name: "Explore Projects", href: "/projects" },
+      { name: "Services", href: "/service" },
     ],
     socials: [
       { icon: <FaSquareXTwitter size={18} />, href: "#", name: "X" },
@@ -35,10 +31,9 @@ const Footer = () => {
       { icon: <FaLinkedin size={18} />, href: "#", name: "LinkedIn" },
     ],
     policies: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Cookie Policy", href: "#" },
-      { name: "Accessibility", href: "#" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Terms of Service", href: "/terms-of-service" },
+      { name: "Cookie Policy", href: "/cookie-policy" },
     ],
   };
 
