@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const ServiceHero = () => {
   // We use a high-quality construction process video from a public CDN
-  const videoUrl = "/smain-reality-hero-video.mp4";
+  const videoUrl = "/service-hero-video.mp4";
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },

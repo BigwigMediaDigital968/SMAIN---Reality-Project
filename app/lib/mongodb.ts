@@ -6,20 +6,23 @@ if (!MONGODB_URI) {
   throw new Error("Please define MONGODB_URI in .env.local");
 }
 
-// Prevent multiple connections in Next.js dev (hot reload)
-declare global {
-  var _mongooseConn: typeof mongoose | null;
-}
-
-let cached = global._mongooseConn;
+let cached = (global as any).mongoose || {
+  conn: null,
+  promise: null,
+};
 
 export async function connectDB() {
-  if (cached) return cached;
+  if (cached.conn) return cached.conn;
 
-  cached = await mongoose.connect(MONGODB_URI, {
-    dbName: "smain-reality",
-  });
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      dbName: "smain-reality",
+      bufferCommands: false,
+    });
+  }
 
-  global._mongooseConn = cached;
-  return cached;
+  cached.conn = await cached.promise;
+  (global as any).mongoose = cached;
+
+  return cached.conn;
 }

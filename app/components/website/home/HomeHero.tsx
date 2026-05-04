@@ -21,8 +21,8 @@ const HomeHero = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-brand-primary uppercase">
-                Where your best <br />
-                <span className="inline-block text-brand-primary">
+                Where your <br />
+                <span className="typing-text inline-block text-brand-primary">
                   next home awaits
                 </span>
               </h1>
@@ -55,7 +55,7 @@ const HomeHero = () => {
             </motion.div>
           </div>
 
-          {/* Image Content */}
+          {/* Image / Video Content */}
           <div className="w-full lg:w-1/2 relative h-[50vh] lg:h-[80vh] mt-8 lg:mt-0">
             <motion.div
               initial={{ opacity: 0, scale: 1.1 }}
@@ -63,15 +63,22 @@ const HomeHero = () => {
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
               className="w-full h-full relative"
             >
-              {/* The Building Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center rounded-bl-[100px] lg:rounded-bl-[200px]"
-                style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')`,
-                }}
-              >
+              {/* Background Video */}
+              <div className="absolute inset-0 overflow-hidden rounded-bl-[100px] lg:rounded-bl-[200px]">
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  poster="/images/fallback.jpg" // optional fallback
+                >
+                  <source src="/home-hero-video.mp4" type="video/mp4" />
+                </video>
+
                 {/* Overlay for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-bl-[100px] lg:rounded-bl-[200px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-bl-[100px] lg:rounded-bl-[200px]" />
               </div>
 
               {/* Accent Elements */}

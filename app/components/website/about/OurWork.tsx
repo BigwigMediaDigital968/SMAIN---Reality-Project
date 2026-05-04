@@ -20,8 +20,7 @@ const workItems: WorkItem[] = [
     id: 1,
     frontTitle: "The Obsidian Villa",
     frontCategory: "Luxury Residential",
-    frontImage:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+    frontImage: "/our-work-1.png",
     backTitle: "Interior Elegance",
     backCategory: "Bespoke Finishing",
     backDescription:
@@ -33,8 +32,7 @@ const workItems: WorkItem[] = [
     id: 2,
     frontTitle: "Skyline Terrace",
     frontCategory: "High Rise",
-    frontImage:
-      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+    frontImage: "/our-work-2.png",
     backTitle: "Structural Prowess",
     backCategory: "Engineering",
     backDescription:
@@ -46,8 +44,7 @@ const workItems: WorkItem[] = [
     id: 3,
     frontTitle: "The Nexus Plaza",
     frontCategory: "Commercial",
-    frontImage:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+    frontImage: "/our-work-3.png",
     backTitle: "Future Workplace",
     backCategory: "Tech Infrastructure",
     backDescription:

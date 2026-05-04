@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Play, Pause } from "lucide-react";
+import Link from "next/link";
 
 interface SlideData {
   id: number;
@@ -25,7 +26,7 @@ const slides: SlideData[] = [
     label: "Our Projects",
     title: "Transforming Ideas into Scalable Digital Experiences",
     subtitle: "FEATURED WORK",
-    image: "/smain-reality-images.png",
+    image: "/villa-image.png",
   },
   {
     id: 2,
@@ -137,9 +138,12 @@ export default function HomeSlider() {
               transition={{ delay: 0.6 }}
               className="flex items-center gap-4 group cursor-pointer"
             >
-              <span className="text-sm font-bold uppercase tracking-widest text-white border-b-2 border-brand-accent pb-1">
+              <Link
+                href="/projects"
+                className="text-sm font-bold uppercase tracking-widest text-white border-b-2 border-brand-accent pb-1"
+              >
                 Read the story
-              </span>
+              </Link>
               <ArrowRight className="text-white group-hover:translate-x-2 transition-transform" />
             </motion.div>
           </motion.div>

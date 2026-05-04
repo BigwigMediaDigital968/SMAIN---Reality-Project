@@ -27,12 +27,37 @@ const HomeLeadForm = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode}${formData.phone}`,
+          location: formData.location,
+          inquiry: formData.service,
+          message: formData.message,
+          source: "website",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("Error:", data);
+        return;
+      }
+
       setIsSubmitted(true);
-    }, 1000);
+    } catch (err) {
+      console.error("Submission failed:", err);
+    }
   };
 
   const services = ["Luxury Apartment", "Commercial", "Villa", "Renovation"];

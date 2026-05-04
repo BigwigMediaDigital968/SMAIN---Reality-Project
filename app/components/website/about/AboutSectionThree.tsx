@@ -159,10 +159,10 @@ const AboutSectionThree = () => {
             Ready to start your next ambitious build?
           </span>
           <Link
-            href="/sectors"
+            href="/projects"
             className="bg-brand-primary text-white px-12 py-5 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-brand-primary transition-all duration-500 cursor-pointer"
           >
-            View All Specialized Sectors
+            Explore All Specialized Sectors
           </Link>
         </motion.div>
       </div>

@@ -4,14 +4,13 @@ import { useEffect, useState } from "react";
 import { Lead } from "@/app/types/leads";
 import StatsCards from "@/app/components/admin/StatsCards";
 import StatusBadge from "@/app/components/admin/actions/StatusBadge";
-import { adminFetch } from "@/app/lib/admin-fetch"; // ✅ ADD THIS
-
+import { adminFetch } from "@/app/lib/admin-fetch";
 export default function DashboardPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    adminFetch("/api/admin/leads") // ✅ was: fetch("/api/admin/leads")
+    adminFetch("/api/admin/leads")
       .then((res) => res.json())
       .then((data) => {
         setLeads(data.leads ?? []);
@@ -19,6 +18,8 @@ export default function DashboardPage() {
       })
       .catch(() => setLoading(false));
   }, []);
+
+  console.log(leads);
 
   const recent = leads.slice(0, 5);
 

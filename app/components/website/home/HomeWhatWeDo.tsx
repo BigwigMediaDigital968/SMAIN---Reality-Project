@@ -21,8 +21,7 @@ const HomeWhatWeDo = () => {
       title: "Stunning structures, sustainably built",
       description:
         "SMAIN's network of construction professionals rise to the challenges associated with a diverse buildings portfolio, bringing added value to every educational, institutional, residential and commercial construction project.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
+      imageUrl: "/home-image-1.png",
     },
     {
       id: "vill",
@@ -30,8 +29,7 @@ const HomeWhatWeDo = () => {
       title: "Connecting communities through quality",
       description:
         "Our civil infrastructure team specializes in complex projects that move people and resources. We focus on longevity, safety, and modern engineering practices to build the backbone of the city.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200",
+      imageUrl: "/home-image-2.png",
     },
     {
       id: "apartments",
@@ -39,8 +37,7 @@ const HomeWhatWeDo = () => {
       title: "Powerful solutions for industry",
       description:
         "From manufacturing plants to energy facilities, our industrial division provides robust construction services that meet stringent technical requirements and safety standards.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=1200",
+      imageUrl: "/home-image-3.png",
     },
     {
       id: "special",

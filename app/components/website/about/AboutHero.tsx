@@ -31,17 +31,6 @@ const AboutHero = () => {
 
   return (
     <section className="relative min-h-[95vh] flex flex-col pt-24 lg:pt-32 bg-white overflow-hidden">
-      {/* Primary Background Image with Parallax-ready feel */}
-      {/* <div className="absolute inset-0 z-0">
-        <img
-          src="/smain-reality-images-4.png"
-          alt="Architectural Detail"
-          className="w-full h-full object-cover opacity-5"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-transparent" />
-      </div> */}
-
       {/* Background Blueprint Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] z-1 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/graphy.png')]" />
 
@@ -118,7 +107,7 @@ const AboutHero = () => {
               className="relative aspect-[3/4] overflow-hidden shadow-2xl"
             >
               <img
-                src="/smain-image.png"
+                src="/about-hero-image.png"
                 alt="Construction Site High Rise"
                 className="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-700"
               />

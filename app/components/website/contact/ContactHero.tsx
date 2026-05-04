@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
@@ -13,13 +12,13 @@ const ContactHero = () => {
           initial={{ scale: 1.1, opacity: 0 }}
           animate={{ scale: 1, opacity: 0.4 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          src="/smain-reality-images-4.png"
+          src="/contact-hero.png"
           alt="Contact SMAIN"
           className="w-full h-full object-cover transition-all duration-1000"
         />
         {/* Brand Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/10 via-brand-primary/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/20 via-transparent to-transparent" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/10 via-brand-primary/60 to-transparent" /> */}
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-brand-primary/20 via-transparent to-transparent" /> */}
       </div>
 
       {/* Decorative Accent (Yellow Line) */}

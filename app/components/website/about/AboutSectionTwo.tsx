@@ -16,30 +16,30 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 0,
-    subtitle: "Corporate Responsibility",
-    title: "Building meaningful change within our communities.",
+    subtitle: "Craftsmanship & Quality",
+    title: "Engineered precision. Delivered excellence.",
     description:
-      "At SMAIN, building what matters goes beyond delivering world-class structures. We are committed to fostering diversity, local economic growth, and educational partnerships that empower the next generation of builders.",
+      "At SMAIN Reality, every project is built with uncompromising attention to detail. From premium materials to world-class construction standards, we create spaces that stand the test of time — structurally and aesthetically.",
     imageUrl:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200",
     accentColor: "#F4CF4F",
   },
   {
     id: 1,
-    subtitle: "Water Infrastructure",
-    title: "Building water resiliency for the future.",
+    subtitle: "Timely Delivery & Trust",
+    title: "Committed timelines. Proven reliability.",
     description:
-      "We tackle complex civil engineering challenges to ensure sustainable resource management. From treatment facilities to massive aqueduct systems, our infrastructure secures vital resources for millions.",
+      "We understand that time is as valuable as the investment itself. With strong project management and transparent processes, SMAIN Reality ensures on-time delivery without compromising on quality or design integrity.",
     imageUrl:
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200",
     accentColor: "#F4CF4F",
   },
   {
     id: 2,
-    subtitle: "Innovation & Tech",
-    title: "The future of construction is digital.",
+    subtitle: "Innovation in Construction",
+    title: "Modern technology meets smart living.",
     description:
-      "Leveraging VR, 4D modeling, and autonomous site monitoring, we bring a level of precision to luxury construction that was previously impossible. We don't just build; we engineer intelligence.",
+      "We integrate advanced construction techniques, smart planning, and future-ready designs to create homes and commercial spaces that redefine modern living — efficient, sustainable, and intelligent.",
     imageUrl:
       "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200",
     accentColor: "#F4CF4F",
