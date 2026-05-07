@@ -9,12 +9,14 @@ import Footer from "./components/website/Footer";
 import HomeTestimonial from "./components/website/home/HomeTestimonial";
 import HomeLeadForm from "./components/website/home/HomeLeadForm";
 import NewsLetter from "./components/website/NewsLetter";
+import HomeHeroNew from "./components/website/home/HomeHeroNew";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <HomeHero />
+      <HomeHeroNew />
+      {/* <HomeHero /> */}
       <HomeAbout />
       <HomeSlider />
       <HomeService />
