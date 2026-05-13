@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   title: "SMAIN Reality | Trusted Builders of Modern Living Spaces",
   description:
     "Specialized in premium construction, luxury villas, apartments, and mixed-use developments with precision, quality, and long-term value.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import LuxuryReveal from "../../LuxuryReveal";
+import Link from "next/link";
 
 interface ProjectCategory {
   id: string;
@@ -16,20 +17,12 @@ interface ProjectCategory {
 const HomeWhatWeDo = () => {
   const categories: ProjectCategory[] = [
     {
-      id: "buildings",
-      label: "Buildings",
-      title: "Stunning structures, sustainably built",
-      description:
-        "SMAIN's network of construction professionals rise to the challenges associated with a diverse buildings portfolio, bringing added value to every educational, institutional, residential and commercial construction project.",
-      imageUrl: "/home-image-1.png",
-    },
-    {
       id: "vill",
       label: "Villas",
       title: "Connecting communities through quality",
       description:
         "Our civil infrastructure team specializes in complex projects that move people and resources. We focus on longevity, safety, and modern engineering practices to build the backbone of the city.",
-      imageUrl: "/home-image-2.png",
+      imageUrl: "/project-image-7.jpg",
     },
     {
       id: "apartments",
@@ -40,13 +33,20 @@ const HomeWhatWeDo = () => {
       imageUrl: "/home-image-3.png",
     },
     {
+      id: "buildings",
+      label: "Buildings",
+      title: "Stunning structures, sustainably built",
+      description:
+        "SMAIN's network of construction professionals rise to the challenges associated with a diverse buildings portfolio, bringing added value to every educational, institutional, residential and commercial construction project.",
+      imageUrl: "/smain-image-6.png",
+    },
+    {
       id: "special",
       label: "Special Projects",
       title: "Unique visions, tailored execution",
       description:
         "Every vision is unique. Our special projects team handles bespoke builds and complex renovations that require a high degree of craftsmanship and technical innovation.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200",
+      imageUrl: "project-image-1.jpg",
     },
   ];
 
@@ -151,7 +151,10 @@ const HomeWhatWeDo = () => {
                 </p>
 
                 <div className="pt-4">
-                  <button className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-primary cursor-pointer">
+                  <Link
+                    href="/service"
+                    className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-primary cursor-pointer"
+                  >
                     <span className="relative">
                       Learn More
                       <span className="absolute -bottom-2 left-0 w-8 h-[2px] bg-brand-accent group-hover:w-full transition-all duration-300" />
@@ -160,7 +163,7 @@ const HomeWhatWeDo = () => {
                       size={18}
                       className="group-hover:translate-x-2 transition-transform"
                     />
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             </AnimatePresence>

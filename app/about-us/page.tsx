@@ -5,6 +5,7 @@ import AboutSectionTwo from "../components/website/about/AboutSectionTwo";
 import PremiumCTA from "../components/website/CTA";
 import Footer from "../components/website/Footer";
 import Navbar from "../components/website/Navbar";
+import OngoingProjects from "../components/website/OngoingProjects";
 
 export default function AboutPage() {
   return (
@@ -14,6 +15,7 @@ export default function AboutPage() {
       <AboutSectionOne />
       <AboutSectionTwo />
       <AboutSectionThree />
+      <OngoingProjects />
       <PremiumCTA />
       <Footer />
     </>

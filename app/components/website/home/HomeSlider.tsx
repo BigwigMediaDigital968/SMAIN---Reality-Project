@@ -33,7 +33,7 @@ const slides: SlideData[] = [
     label: "Latest Insights",
     title: "Stay Ahead with Industry Trends & Expert Insights",
     subtitle: "THOUGHT LEADERSHIP",
-    image: "/smain-reality-images-1.png",
+    image: "/project-image-6.jpg",
   },
 ];
 
