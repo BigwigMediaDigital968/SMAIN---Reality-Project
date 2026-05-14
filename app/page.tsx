@@ -10,6 +10,7 @@ import HomeTestimonial from "./components/website/home/HomeTestimonial";
 import HomeLeadForm from "./components/website/home/HomeLeadForm";
 import NewsLetter from "./components/website/NewsLetter";
 import HomeHeroNew from "./components/website/home/HomeHeroNew";
+import Highlights from "./components/website/Highlights";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       {/* <HomeHero /> */}
       <HomeAbout />
       <HomeSlider />
+      <Highlights />
       <HomeService />
       <HomeWhatWeDo />
       <HomeProject />

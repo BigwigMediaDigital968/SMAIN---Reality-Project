@@ -39,7 +39,16 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="text-white bg-brand-primary pt-20 pb-10 border-t border-white/10">
+      <footer className="relative text-white pt-20 pb-10 border-t border-white/10 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="/footer-bg-texture.png"
+            alt="Footer background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         <div className="max-w-7xl mx-auto px-6">
           {/* Main Branding & Navigation Section (Inspired by Dribbble/Clark styles) */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 pb-16 border-b border-white/10">
@@ -66,7 +75,7 @@ const Footer = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+                  className="text-sm font-medium  hover:text-brand-accent transition-colors"
                 >
                   {item.name}
                 </motion.a>
@@ -78,7 +87,7 @@ const Footer = () => {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-400 hover:text-yellow-500 transition-colors"
+                  className="text-yellow-400 hover:text-white transition-colors"
                 >
                   {social.icon}
                 </a>
@@ -91,11 +100,11 @@ const Footer = () => {
             <div>
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight leading-tight mb-6">
                 Building the future of <br />
-                <span className="italic font-serif font-light text-gray-500">
+                <span className="italic font-serif font-light text-brand-accent/80">
                   high-end construction.
                 </span>
               </h3>
-              <p className="text-gray-400 font-light max-w-md leading-relaxed">
+              <p className="text-gray-100 max-w-md leading-relaxed">
                 We focus on mutual success where everyone wins. Our commitment
                 to unparalleled craftsmanship ensures your vision becomes a
                 landmark.
@@ -124,7 +133,7 @@ const Footer = () => {
 
           {/* Policies & Rights Section */}
           <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="text-[11px] font-bold text-gray-500 uppercase tracking-widest">
+            <div className="text-[11px] font-bold text-gray-200 uppercase tracking-widest">
               © {currentYear} SMAIN REALITY. ALL RIGHTS RESERVED.
             </div>
 
@@ -133,7 +142,7 @@ const Footer = () => {
                 <a
                   key={policy.name}
                   href={policy.href}
-                  className="group flex items-center gap-1 text-[11px] font-bold text-gray-500 uppercase tracking-widest hover:text-white transition-colors"
+                  className="group flex items-center gap-1 text-[11px] font-bold text-gray-200 uppercase tracking-widest hover:text-white transition-colors"
                 >
                   {policy.name}
                   <ChevronRight

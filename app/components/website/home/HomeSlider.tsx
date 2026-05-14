@@ -16,27 +16,26 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 0,
-    label: "Our Values",
-    title: "Built on Trust, Innovation & Long-Term Vision",
-    subtitle: "CORE PRINCIPLES",
-    image: "/smain-reality-images-2.png",
+    label: "Elegant Interiors",
+    title: "Crafted Spaces That Redefine Luxury Living",
+    subtitle: "TIMELESS DESIGN",
+    image: "/interiro-1.png",
   },
   {
     id: 1,
-    label: "Our Projects",
-    title: "Transforming Ideas into Scalable Digital Experiences",
-    subtitle: "FEATURED WORK",
-    image: "/villa-image.png",
+    label: "Premium Living",
+    title: "Spacious Villas Designed for Comfort & Sophistication",
+    subtitle: "EXCLUSIVE LIFESTYLE",
+    image: "/interiro-2.png",
   },
   {
     id: 2,
-    label: "Latest Insights",
-    title: "Stay Ahead with Industry Trends & Expert Insights",
-    subtitle: "THOUGHT LEADERSHIP",
-    image: "/project-image-6.jpg",
+    label: "Modern Amenities",
+    title: "Experience World-Class Features in Every Corner",
+    subtitle: "LUXURY REDEFINED",
+    image: "/interiro-3.png",
   },
 ];
-
 const AUTO_PLAY_INTERVAL = 4000;
 
 export default function HomeSlider() {

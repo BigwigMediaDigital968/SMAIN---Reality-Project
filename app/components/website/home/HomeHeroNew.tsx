@@ -115,8 +115,8 @@ const HomeHeroNew = () => {
                       background: brandPrimary,
                     }}
                   />
-                  <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-white/70">
-                    Luxury Interior & Architecture
+                  <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-white">
+                    Luxury Interior & Architecture in Goa
                   </span>
                 </motion.div>
 
@@ -150,11 +150,11 @@ const HomeHeroNew = () => {
                     delay: 0.3,
                     duration: 1,
                   }}
-                  className="mt-8 text-base sm:text-lg lg:text-xl leading-relaxed text-white/70 max-w-2xl font-light"
+                  className="mt-8 text-base sm:text-lg lg:text-xl leading-relaxed text-white max-w-2xl font-light"
                 >
                   From modern residences to timeless architectural masterpieces,
                   we create refined environments that combine elegance,
-                  functionality, and emotional connection.
+                  functionality, and emotional connection in Goa.
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -193,49 +193,6 @@ const HomeHeroNew = () => {
                     Explore Services
                   </Link>
                 </motion.div>
-
-                {/* Stats */}
-                {/* <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{
-                    delay: 0.6,
-                    duration: 1,
-                  }}
-                  className="mt-14 grid grid-cols-3 gap-5 max-w-2xl"
-                >
-                  {[
-                    {
-                      value: "250+",
-                      label: "Projects Delivered",
-                    },
-                    {
-                      value: "15+",
-                      label: "Years Experience",
-                    },
-                    {
-                      value: "98%",
-                      label: "Client Satisfaction",
-                    },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="rounded-2xl p-5 backdrop-blur-xl border"
-                      style={{
-                        background: "rgba(255,255,255,0.04)",
-                        borderColor: "rgba(255,255,255,0.08)",
-                      }}
-                    >
-                      <div className="text-2xl sm:text-3xl font-black text-white">
-                        {item.value}
-                      </div>
-
-                      <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/45">
-                        {item.label}
-                      </div>
-                    </div>
-                  ))}
-                </motion.div> */}
               </div>
 
               {/* RIGHT SIDE FLOATING CARD */}

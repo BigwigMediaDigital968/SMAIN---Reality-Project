@@ -12,22 +12,7 @@ const Navbar = () => {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const [showTopBar, setShowTopBar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
-  //     if (currentScrollY > lastScrollY) {
-  //       setShowTopBar(false);
-  //     } else {
-  //       setShowTopBar(true);
-  //     }
-  //     setLastScrollY(currentScrollY);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [lastScrollY]);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -36,51 +21,37 @@ const Navbar = () => {
       href: "/about-us",
       submenu: [],
     },
-    // {
-    //   name: "Our Work",
-    //   href: "/work",
-    //   submenu: [],
-    // },
     { name: "Service", href: "/service" },
     { name: "Projects", href: "/projects" },
     { name: "Contact Us", href: "/contact-us" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50); // trigger after 50px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const textColor = isScrolled ? "text-brand-primary" : "text-white";
+
   return (
     <motion.nav
-      animate={{ y: showTopBar ? 0 : -40 }}
-      transition={{ duration: 0.3 }}
+      animate={{
+        backgroundColor: isScrolled
+          ? "rgba(255,255,255,1)"
+          : "rgba(255,255,255,0)",
+        boxShadow: isScrolled
+          ? "0 2px 10px rgba(0,0,0,0.08)"
+          : "0 0px 0px rgba(0,0,0,0)",
+      }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
       className="fixed top-0 left-0 w-full z-[100]"
     >
-      {/* Top Utility Bar */}
-      {/* <motion.div
-        initial={{ y: 0, opacity: 1 }}
-        animate={{
-          y: showTopBar ? 0 : -50,
-          opacity: showTopBar ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="bg-white/90 backdrop-blur-md border-b border-gray-100 hidden md:block"
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 h-10 flex justify-end items-center gap-6">
-          <Link
-            href="/contact-us"
-            className={`text-[10px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${
-              pathname === "/contact-us"
-                ? "text-brand-accent"
-                : "text-brand-primary/60 hover:text-brand-primary"
-            }`}
-          >
-            Contact Us
-          </Link>
-          <button className="text-[10px] font-bold uppercase tracking-widest text-brand-primary/60 hover:text-brand-primary transition-colors cursor-pointer">
-            Offices
-          </button>
-        </div>
-      </motion.div> */}
-
       {/* Main Navbar */}
-      <div className="bg-white relative shadow-sm">
+      <div className="relative">
         <div className="max-w-7xl mx-auto pl-6 h-20 flex justify-between items-center">
           {/* Logo */}
           <Link
@@ -131,7 +102,7 @@ const Navbar = () => {
                     className={`px-4 py-2 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center gap-1 relative ${
                       isActive
                         ? "text-brand-accent"
-                        : "text-brand-primary hover:text-brand-accent"
+                        : `${textColor} hover:text-brand-accent`
                     }`}
                   >
                     {link.name}
@@ -180,14 +151,24 @@ const Navbar = () => {
                 </div>
               );
             })}
+
+            <Link
+              href="/contact-us"
+              className={`ml-4 px-5 py-2 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
+                isScrolled
+                  ? "bg-brand-primary text-white border-brand-primary hover:bg-brand-accent"
+                  : "bg-white/10 text-white border-white/30 backdrop-blur-md hover:bg-brand-accent hover:text-white"
+              }`}
+            >
+              Enquire Now
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
           <div className="lg:hidden flex items-center gap-4">
-            <Search size={20} className="text-brand-primary" />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-brand-primary p-2 focus:outline-none cursor-pointer"
+              className="text-white p-2 focus:outline-none cursor-pointer"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -215,7 +196,7 @@ const Navbar = () => {
             >
               <div className="p-8 flex justify-between items-center border-b border-white/10">
                 <span className="text-white font-black italic tracking-tighter">
-                  SMAIN
+                  SMAIN Realty
                 </span>
                 <X
                   size={24}
@@ -257,9 +238,13 @@ const Navbar = () => {
               </div>
 
               <div className="p-8 bg-brand-primary">
-                <button className="w-full flex items-center justify-between text-white font-bold uppercase tracking-widest text-xs cursor-pointer">
-                  Request a Viewing <ArrowRight size={16} />
-                </button>
+                <Link
+                  href="/contact-us"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full flex items-center justify-between text-white font-bold uppercase tracking-widest text-xs cursor-pointer"
+                >
+                  Enquire Now <ArrowRight size={16} />
+                </Link>
               </div>
             </motion.div>
           </>

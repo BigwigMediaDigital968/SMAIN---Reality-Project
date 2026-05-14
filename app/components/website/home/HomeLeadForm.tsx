@@ -198,7 +198,7 @@ const HomeLeadForm = () => {
 
                       <div className="flex gap-3 w-full">
                         {/* Select */}
-                        <div className="relative w-[95px] shrink-0">
+                        <div className="relative w-[80px] shrink-0">
                           <select
                             className="appearance-none w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-xl px-3 py-4 text-white text-sm pr-8 outline-none focus:border-[#F4CF4F] focus:ring-2 focus:ring-[#F4CF4F]/30 transition-all cursor-pointer"
                             value={formData.countryCode}
@@ -215,7 +215,7 @@ const HomeLeadForm = () => {
                                 value={c.code}
                                 className="bg-brand-primary text-white"
                               >
-                                {c.label} ({c.code})
+                                ({c.code})
                               </option>
                             ))}
                           </select>
