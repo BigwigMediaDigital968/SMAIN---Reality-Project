@@ -69,7 +69,7 @@ const HomeHeroNew = () => {
               filter: "brightness(0.6) contrast(1.08)",
             }}
           >
-            <source src="/goa-beach-house.mp4" type="video/mp4" />
+            <source src="/home-hero-bg.mp4" type="video/mp4" />
           </video>
 
           {/* Golden Glow */}
@@ -116,7 +116,7 @@ const HomeHeroNew = () => {
                     }}
                   />
                   <span className="text-[11px] uppercase tracking-[0.28em] font-semibold text-white">
-                    Luxury Interior & Architecture in Goa
+                    Build Luxury Villas in Goa
                   </span>
                 </motion.div>
 
@@ -152,9 +152,9 @@ const HomeHeroNew = () => {
                   }}
                   className="mt-8 text-base sm:text-lg lg:text-xl leading-relaxed text-white max-w-2xl font-light"
                 >
-                  From modern residences to timeless architectural masterpieces,
-                  we create refined environments that combine elegance,
-                  functionality, and emotional connection in Goa.
+                  SMAIN Realty craft exceptional luxury villas in Goa, blending
+                  contemporary design, premium craftsmanship, and coastal
+                  sophistication.
                 </motion.p>
 
                 {/* CTA Buttons */}
@@ -186,12 +186,12 @@ const HomeHeroNew = () => {
                   </button>
 
                   {/* Secondary */}
-                  <Link
+                  {/* <Link
                     href="/service"
                     className="px-7 py-3.5 rounded-full border flex items-center border-white/15 bg-white/[0.04] backdrop-blur-xl text-white text-sm uppercase tracking-[0.14em] font-medium hover:bg-white hover:text-black transition-all duration-500"
                   >
                     Explore Services
-                  </Link>
+                  </Link> */}
                 </motion.div>
               </div>
 
@@ -213,7 +213,7 @@ const HomeHeroNew = () => {
                 >
                   <div className="relative">
                     <img
-                      src="/hero-feature.jpg"
+                      src="/interiro-2.png"
                       alt="Luxury Interior"
                       className="w-full h-[260px] object-cover"
                     />

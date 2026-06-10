@@ -32,14 +32,14 @@ const HomeWhatWeDo = () => {
         "From manufacturing plants to energy facilities, our industrial division provides robust construction services that meet stringent technical requirements and safety standards.",
       imageUrl: "/home-image-3.png",
     },
-    {
-      id: "buildings",
-      label: "Buildings",
-      title: "Stunning structures, sustainably built",
-      description:
-        "SMAIN's network of construction professionals rise to the challenges associated with a diverse buildings portfolio, bringing added value to every educational, institutional, residential and commercial construction project.",
-      imageUrl: "/smain-image-6.png",
-    },
+    // {
+    //   id: "buildings",
+    //   label: "Buildings",
+    //   title: "Stunning structures, sustainably built",
+    //   description:
+    //     "SMAIN's network of construction professionals rise to the challenges associated with a diverse buildings portfolio, bringing added value to every educational, institutional, residential and commercial construction project.",
+    //   imageUrl: "/smain-image-6.png",
+    // },
     {
       id: "special",
       label: "Special Projects",
@@ -152,7 +152,7 @@ const HomeWhatWeDo = () => {
 
                 <div className="pt-4">
                   <Link
-                    href="/service"
+                    href="/contact-us"
                     className="group flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-brand-primary cursor-pointer"
                   >
                     <span className="relative">

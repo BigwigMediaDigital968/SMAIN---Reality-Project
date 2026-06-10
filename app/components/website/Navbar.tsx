@@ -14,16 +14,34 @@ const Navbar = () => {
   const [showTopBar, setShowTopBar] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // const navLinks = [
+  //   { name: "Home", href: "/" },
+  //   {
+  //     name: "About Us",
+  //     href: "/about-us",
+  //     submenu: [],
+  //   },
+  //   { name: "Service", href: "/service" },
+  //   { name: "Projects", href: "/projects" },
+  //   { name: "Contact Us", href: "/contact-us" },
+  // ];
+
   const navLinks = [
     { name: "Home", href: "/" },
     {
+      name: "Home For Sale",
+      href: "#",
+      submenu: [
+        { name: "Villas in North Goa", href: "#" },
+        { name: "Villas in South Goa", href: "#" },
+      ],
+    },
+    { name: "Completed Homes", href: "#" },
+    {
       name: "About Us",
-      href: "/about-us",
+      href: "#",
       submenu: [],
     },
-    { name: "Service", href: "/service" },
-    { name: "Projects", href: "/projects" },
-    { name: "Contact Us", href: "/contact-us" },
   ];
 
   useEffect(() => {
@@ -136,12 +154,12 @@ const Navbar = () => {
                           <div className="flex flex-col py-4">
                             {link.submenu.map((item) => (
                               <motion.a
-                                key={item}
-                                href="#"
+                                key={item.name}
+                                href={item.href}
                                 whileHover={{ x: 10 }}
                                 className="px-8 py-3 text-[10px] font-bold text-white/70 hover:text-white hover:bg-white/5 transition-all uppercase tracking-widest"
                               >
-                                {item}
+                                {item.name}
                               </motion.a>
                             ))}
                           </div>
@@ -223,11 +241,11 @@ const Navbar = () => {
                         <div className="pl-4 mt-2 space-y-3 border-l border-brand-accent/30">
                           {link.submenu.map((item) => (
                             <a
-                              key={item}
-                              href="#"
+                              key={item.name}
+                              href={item.href}
                               className="block text-sm text-white/50 hover:text-brand-accent uppercase tracking-widest"
                             >
-                              {item}
+                              {item.name}
                             </a>
                           ))}
                         </div>

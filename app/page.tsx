@@ -11,6 +11,8 @@ import HomeLeadForm from "./components/website/home/HomeLeadForm";
 import NewsLetter from "./components/website/NewsLetter";
 import HomeHeroNew from "./components/website/home/HomeHeroNew";
 import Highlights from "./components/website/Highlights";
+import LifeStyle from "./components/website/home/LifeStyle";
+import WhatsAppButton from "./components/website/home/Whatapp";
 
 export default function Home() {
   return (
@@ -20,14 +22,16 @@ export default function Home() {
       {/* <HomeHero /> */}
       <HomeAbout />
       <HomeSlider />
-      <Highlights />
-      <HomeService />
+      {/* <Highlights /> */}
+      {/* <HomeService /> */}
       <HomeWhatWeDo />
-      <HomeProject />
+      <LifeStyle />
+      {/* <HomeProject /> */}
       <HomeTestimonial />
       <HomeLeadForm />
-      <NewsLetter />
+      {/* <NewsLetter /> */}
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

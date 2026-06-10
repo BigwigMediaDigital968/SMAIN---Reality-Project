@@ -11,8 +11,8 @@ export default function ContactPage() {
       <Navbar />
       <ContactHero />
       <ContactForm />
-      <OurWork />
-      <NewsLetter />
+      {/* <OurWork /> */}
+      {/* <NewsLetter /> */}
       <Footer />
     </>
   );

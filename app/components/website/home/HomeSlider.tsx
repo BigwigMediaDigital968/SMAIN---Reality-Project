@@ -131,7 +131,7 @@ export default function HomeSlider() {
               {slides[currentSlide].title}
             </motion.h2>
 
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -144,7 +144,7 @@ export default function HomeSlider() {
                 Read the story
               </Link>
               <ArrowRight className="text-white group-hover:translate-x-2 transition-transform" />
-            </motion.div>
+            </motion.div> */}
           </motion.div>
         </AnimatePresence>
       </div>

@@ -161,12 +161,12 @@ const App = () => {
                         }
                       >
                         <option value="">Choose an option</option>
-                        <option value="Residential">Luxury Residential</option>
+                        <option value="Residential">Luxury Apartment</option>
                         <option value="Commercial">
                           Commercial Construction
                         </option>
-                        <option value="Industrial">Heavy Industrial</option>
-                        <option value="Careers">Careers</option>
+                        <option value="Industrial">Luxury Villas</option>
+                        <option value="Careers">Renovations</option>
                       </select>
                     </div>
                     <div>

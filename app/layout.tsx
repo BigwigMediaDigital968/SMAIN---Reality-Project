@@ -24,9 +24,9 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "SMAIN Reality | Trusted Builders of Modern Living Spaces",
+  title: "SMAIN Realty | Trusted Builders of Modern Living Spaces",
   description:
-    "Specialized in premium construction, luxury villas, apartments, and mixed-use developments with precision, quality, and long-term value.",
+    "Specialized in premium construction of luxury villas in goa by developments with precision, quality, and long-term value.",
   icons: {
     icon: "/favicon.png",
   },

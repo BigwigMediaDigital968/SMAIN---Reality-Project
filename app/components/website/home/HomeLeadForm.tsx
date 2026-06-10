@@ -362,6 +362,8 @@ import {
   ArrowRight,
   PhoneCall,
   ChevronDown,
+  MapPinned,
+  KeyRoundIcon,
 } from "lucide-react";
 
 // --- Types & Interfaces ---
@@ -494,7 +496,7 @@ const HomeLeadForm: React.FC = () => {
   const services: string[] = [
     "Luxury Apartment",
     "Commercial",
-    "Villa",
+    "Luxury Villa",
     "Renovation",
   ];
 
@@ -582,16 +584,16 @@ const HomeLeadForm: React.FC = () => {
               <div className="space-y-6">
                 {[
                   {
-                    icon: <HardHat className="text-[#F4CF4F]" />,
-                    text: "Expert Consultation",
+                    icon: <MapPinned className="text-[#F4CF4F]" />,
+                    text: "Prime Goa Locations",
                   },
                   {
                     icon: <Hammer className="text-[#F4CF4F]" />,
                     text: "Quality Craftsmanship",
                   },
                   {
-                    icon: <PhoneCall className="text-[#F4CF4F]" />,
-                    text: "24/7 Project Support",
+                    icon: <KeyRoundIcon className="text-[#F4CF4F]" />,
+                    text: "Turnkey Villa Solutions",
                   },
                 ].map((item, i) => (
                   <motion.div

@@ -17,34 +17,34 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Alexander Sterling",
-    role: "Chief Architect",
-    company: "Sterling & Co.",
-    project: "Atlas Museum",
+    name: "Rajesh Mehta",
+    role: "Business Owner",
+    company: "Mehta Group",
+    project: "Luxury Beachfront Villa",
     content:
-      "SMAIN Reality's attention to structural integrity and architectural finesse is unmatched. They didn't just build a museum; they crafted a masterpiece that defines the city's skyline. Their team managed the complex geometry of the Atlas Museum with absolute precision.",
+      "From land acquisition to the final handover, the entire process was handled with remarkable professionalism. The attention to detail, premium finishes, and commitment to quality exceeded our expectations. Today, our villa stands as one of the finest residences in North Goa.",
     image:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
   },
   {
     id: 2,
-    name: "Elena Rodriguez",
-    role: "Project Director",
-    company: "Urban Pulse",
-    project: "Axel Towers",
+    name: "Priya Kapoor",
+    role: "Entrepreneur",
+    company: "Kapoor Ventures",
+    project: "Private Luxury Villa",
     content:
-      "Working with SMAIN on the Axel Towers was a seamless experience. Their commitment to safety and deadlines, combined with their eye for luxury finishing, made them the ideal partner for our flagship residential project.",
+      "We wanted a home that blended modern luxury with Goa's natural beauty, and the team delivered exactly that. Their design expertise, transparency, and execution quality made the entire journey stress-free. Every guest who visits is impressed by the craftsmanship.",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
   },
   {
     id: 3,
-    name: "Marcus Chen",
-    role: "CEO",
-    company: "Chen Hospitality Group",
-    project: "Glass Hotel",
+    name: "Vikram Malhotra",
+    role: "Investor",
+    company: "Malhotra Holdings",
+    project: "Premium Villa Development",
     content:
-      "The complexity of the Glass Hotel required a contractor who understood the delicate balance between transparency and strength. SMAIN delivered ahead of schedule, with craftsmanship that exceeded our highest expectations.",
+      "As a real estate investor, I value reliability and long-term quality. The team delivered our luxury villa project on schedule while maintaining exceptional construction standards. Their understanding of premium living and high-value real estate is truly commendable.",
     image:
       "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200",
   },
@@ -134,10 +134,10 @@ const HomeTestimonial = () => {
                 </div>
                 <div>
                   <div className="text-4xl font-bold text-[#F4CF4F] mb-2">
-                    150+
+                    100%
                   </div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/40">
-                    Projects Delivered
+                    Satisfied Buyers
                   </div>
                 </div>
               </div>
@@ -177,11 +177,11 @@ const HomeTestimonial = () => {
                   </p>
 
                   <div className="flex items-center gap-6 pt-8">
-                    <img
+                    {/* <img
                       src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
                       className="w-16 h-16 rounded-full object-cover grayscale border-2 border-[#F4CF4F]"
-                    />
+                    /> */}
                     <div>
                       <h4 className="text-lg font-bold text-white tracking-tight">
                         {testimonials[currentIndex].name}

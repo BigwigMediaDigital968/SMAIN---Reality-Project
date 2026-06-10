@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -28,16 +28,16 @@ const HomeAbout = () => {
       label: "Years of Excellence",
       description: "Delivering luxury spaces across the region.",
     },
-    {
-      value: "500+",
-      label: "Premium Units Delivered",
-      description: "A track record of high-end construction.",
-    },
-    {
-      value: "#01",
-      label: "Luxury Choice",
-      description: "Ranked as the preferred builder for elite villas.",
-    },
+    // {
+    //   value: "500+",
+    //   label: "Premium Units Delivered",
+    //   description: "A track record of high-end construction.",
+    // },
+    // {
+    //   value: "#01",
+    //   label: "Luxury Choice",
+    //   description: "Ranked as the preferred builder for elite villas.",
+    // },
   ];
 
   const containerVariants: Variants = {
@@ -116,7 +116,7 @@ const HomeAbout = () => {
             </motion.div>
 
             {/* Stats Animated Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid gap-6">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -140,11 +140,11 @@ const HomeAbout = () => {
 
             <motion.div variants={itemVariants} className="mt-8">
               <a
-                href="/about-us"
+                href="/contact-us"
                 className="inline-flex w-fit group px-10 py-5 bg-[#2d2926] text-[#f8f5f2] font-bold uppercase tracking-widest text-xs hover:bg-[#ffb24e] hover:text-[#2d2926] transition-all duration-500 items-center gap-4 cursor-pointer"
                 onClick={(e) => e.preventDefault()}
               >
-                About SMAIN
+                Contact Us
                 <ArrowUpRight
                   size={18}
                   className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"

@@ -20,10 +20,14 @@ const Footer = () => {
   const links = {
     navigation: [
       { name: "Contact", href: "/contact-us" },
-      { name: "Know about us", href: "/about-us" },
-      { name: "Explore Projects", href: "/projects" },
-      { name: "Services", href: "/service" },
+      { name: "Home For Sale", href: "#" },
     ],
+    // navigation: [
+    //   { name: "Contact", href: "/contact-us" },
+    //   { name: "Know about us", href: "/about-us" },
+    //   { name: "Explore Projects", href: "/projects" },
+    //   { name: "Services", href: "/service" },
+    // ],
     socials: [
       { icon: <FaSquareXTwitter size={18} />, href: "#", name: "X" },
       { icon: <FaFacebook size={18} />, href: "#", name: "Facebook" },
@@ -82,7 +86,7 @@ const Footer = () => {
               ))}
             </nav>
 
-            <div className="flex items-center gap-6">
+            {/* <div className="flex items-center gap-6">
               {links.socials.map((social) => (
                 <a
                   key={social.name}
@@ -92,7 +96,7 @@ const Footer = () => {
                   {social.icon}
                 </a>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Action & Vision Section */}
@@ -123,7 +127,7 @@ const Footer = () => {
                 />
               </button>
               <Link
-                href="/service"
+                href="/contact-us"
                 className="flex items-center justify-center gap-3 border border-white/20 hover:border-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest transition-all cursor-pointer"
               >
                 Explore Services
