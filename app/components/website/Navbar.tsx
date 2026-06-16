@@ -77,7 +77,7 @@ const Navbar = () => {
             className="flex items-center gap-3 group cursor-pointer"
           >
             <div className="h-[50px] w-auto">
-             <img src="/smain-realty-blue.png" alt="" className={`w-full h-full object-center object-cover ${isScrolled?"":"filter brightness-0 invert"}`} />
+             <img src="/smain-realty-blue.png" alt="" className={`h-full w-auto object-contain ${isScrolled?"":"filter brightness-0 invert"}`} />
             </div>
           </Link>
 
