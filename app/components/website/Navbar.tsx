@@ -76,24 +76,8 @@ const Navbar = () => {
             href="/"
             className="flex items-center gap-3 group cursor-pointer"
           >
-            <div className="relative w-10 h-10 bg-brand-primary overflow-hidden flex items-center justify-center">
-              <motion.div
-                className="absolute inset-0 bg-brand-accent/20"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
-              />
-              <span className="text-white font-serif text-xl font-bold italic">
-                S
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter leading-none text-brand-primary uppercase italic">
-                SMAIN
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.3em] leading-none text-brand-accent uppercase mt-1">
-                Reality
-              </span>
+            <div className="h-[50px] w-auto">
+             <img src="/smain-realty-blue.png" alt="" className={`w-full h-full object-center object-cover ${isScrolled?"":"filter brightness-0 invert"}`} />
             </div>
           </Link>
 
@@ -117,11 +101,10 @@ const Navbar = () => {
                 >
                   <Link
                     href={link.href}
-                    className={`px-4 py-2 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center gap-1 relative ${
-                      isActive
+                    className={`px-4 py-2 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center gap-1 relative ${isActive
                         ? "text-brand-accent"
                         : `${textColor} hover:text-brand-accent`
-                    }`}
+                      }`}
                   >
                     {link.name}
 
@@ -172,11 +155,10 @@ const Navbar = () => {
 
             <Link
               href="/contact-us"
-              className={`ml-4 px-5 py-2 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
-                isScrolled
+              className={`ml-4 px-5 py-2 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${isScrolled
                   ? "bg-brand-primary text-white border-brand-primary hover:bg-brand-accent"
                   : "bg-white/10 text-white border-white/30 backdrop-blur-md hover:bg-brand-accent hover:text-white"
-              }`}
+                }`}
             >
               Enquire Now
             </Link>
@@ -231,9 +213,8 @@ const Navbar = () => {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`text-xl font-bold uppercase tracking-tighter block mb-2 ${
-                          isActive ? "text-brand-accent" : "text-white"
-                        }`}
+                        className={`text-xl font-bold uppercase tracking-tighter block mb-2 ${isActive ? "text-brand-accent" : "text-white"
+                          }`}
                       >
                         {link.name}
                       </Link>

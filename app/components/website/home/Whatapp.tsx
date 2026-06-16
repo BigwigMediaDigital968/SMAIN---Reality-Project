@@ -100,19 +100,19 @@ const WhatsAppButton: React.FC = () => {
     <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[9999] flex flex-col items-end font-sans">
       {/* Animated Greeting Teaser Bubble */}
       <AnimatePresence>
-        {showBubble && (
+        { showBubble && (
           <motion.div
             initial={{ opacity: 0, y: 15, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="absolute bottom-20 right-2 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 max-w-[280px] mb-2 pointer-events-auto"
+            className="absolute bottom-20 right-2 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 w-44 max-w-[280px] mb-2 pointer-events-auto"
             style={{ borderLeft: `4px solid ${colors.accent}` }}
           >
             <button
               onClick={() => setShowScrollBubble(false)}
               className="absolute top-2 right-2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
             >
-              <X size={12} />
+              <X size={14} />
             </button>
             <p
               className="text-xs font-bold uppercase tracking-wider mb-1"
