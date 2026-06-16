@@ -108,8 +108,12 @@ const App = () => {
                   <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">
                     Headquarters
                   </span>
-                  <span className="text-brand-primary font-medium">
-                    100 SMAIN Plaza, Dubai, UAE
+                  <span className="text-brand-primary font-medium capitalize">
+                    812/A
+                    Gera imperium star <br />
+                    OPP Novotel hotel,
+                    PAtto panjim
+                    403001
                   </span>
                 </div>
               </div>
