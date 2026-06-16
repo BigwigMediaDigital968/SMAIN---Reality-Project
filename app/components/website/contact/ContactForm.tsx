@@ -112,7 +112,7 @@ const App = () => {
                     812/A
                     Gera imperium star <br />
                     OPP Novotel hotel,
-                    PAtto panjim
+                    Patto panjim
                     403001
                   </span>
                 </div>
