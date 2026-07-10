@@ -15,7 +15,8 @@ import {
   ArrowUpRight,
   Sparkles,
   Droplet,
-  Wind
+  Wind,
+  ExternalLink
 } from "lucide-react";
 import Gallery from "../../Components/Gallary";
 import Navbar from "@/app/components/website/Navbar";
@@ -25,7 +26,11 @@ import Link from "next/link";
 interface VillaUnit {
   name: string;
   configuration: string;
-  description: string;
+  description?: string;
+  carpet:string;
+  garden:string;
+  builtUp: string;
+  plot:string;
   status: "Available" | "Sold Out" | "Registration Open";
 }
 
@@ -43,9 +48,33 @@ const projectSpecs: ProjectSpecification[] = [
 ];
 
 const villaInventory: VillaUnit[] = [
-  { name: "Villa Type A", configuration: "4 BHK Premium Layout", description: "Maximized natural daylight corridors, private courtyard elements, and organic textures.", status: "Registration Open" },
-  { name: "Villa Type B", configuration: "3 BHK Luxury Layout", description: "Seamless indoor-outdoor transitions integrated with traditional wide shaded verandahs.", status: "Registration Open" },
-  { name: "Villa Type C", configuration: "2 BHK Compact Layout", description: "Efficient geometric footprint optimized for natural cross-ventilation corridors.", status: "Registration Open" },
+  { 
+    name: "Villas 34 to 42", 
+    configuration: "4 BHK Premium Layout", 
+    builtUp: "3550 Sqft", 
+    carpet: "2270 to 2644 Sqft", 
+    garden: "2200 to 2545 Sqft", 
+    plot: "409 to 441 Sqmt", 
+    status: "Registration Open" 
+  },
+  { 
+    name: "Premium Dynamic Enclave", 
+    configuration: "3 BHK Luxury Layout", 
+    builtUp: "Tailored Floorplans", 
+    carpet: "Seamless Flow Layouts", 
+    garden: "Integrated Verandahs", 
+    plot: "Optimized Footprints", 
+    status: "Registration Open" 
+  },
+  { 
+    name: "Compact Dynamic Enclave", 
+    configuration: "2 BHK Efficiency Layout", 
+    builtUp: "Geometric Blueprints", 
+    carpet: "Cross-Ventilated Vectors", 
+    garden: "Native Environments", 
+    plot: "Eco Footprint Mapping", 
+    status: "Registration Open" 
+  },
 ];
 
 const images = [
@@ -55,6 +84,8 @@ const images = [
         "/properties/La-Isla/property-1 (4).jpeg",
         "/properties/La-Isla/property-1 (5).jpeg",
 ];
+
+
 const LaIslaDetailsSection = () => {
   return (
     <>
@@ -72,21 +103,26 @@ const LaIslaDetailsSection = () => {
               <span className="bg-brand-primary/5 text-brand-primary border border-brand-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-none">
                 Conscious Living Enclave
               </span>
-              <div className="flex items-center text-gray-500 text-xs font-medium">
-                <MapPin size={14} className="mr-1 text-brand-accent" /> Pristine Territory, South Goa
-              </div>
+              <a 
+                href="https://maps.app.goo.gl/wdw46SDod7LDDo4y9?g_st=ipc" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center text-gray-500 text-xs font-medium hover:text-brand-accent transition-colors gap-1"
+              >
+                <MapPin size={14} className="text-brand-accent" /> Loliem, South Goa (4-min drive to the most tropical beach) <ExternalLink size={12} />
+              </a>
             </div>
             <h1 className="text-3xl lg:text-5xl font-bold tracking-tighter leading-tight mb-3">
               La Isla: A Timeless Step
             </h1>
             <p className="italic font-serif text-lg font-light text-brand-accent">
-              A deliberate architectural collection guided by the rhythms of the land
+              A premium collection of 2, 3, and 4 BHK architectural villas guided by the land
             </p>
           </div>
 
           <div className="lg:text-right min-w-[240px]">
-            <span className="text-[11px] uppercase tracking-widest text-gray-400 block mb-1">Portfolio Access</span>
-            <div className="text-3xl font-extrabold text-brand-primary tracking-tight">Price Upon Application</div>
+            <span className="text-[11px] uppercase tracking-widest text-gray-400 block mb-1">Portfolio Entry</span>
+            <div className="text-4xl font-extrabold text-brand-primary tracking-tight">₹ 6.00 Cr <span className="text-lg font-normal text-gray-500">onwards</span></div>
             <div className="mt-2 text-xs text-brand-accent tracking-wide font-medium">
               Vianaar Signature Care & Furnishing Modules Included
             </div>
@@ -103,7 +139,7 @@ const LaIslaDetailsSection = () => {
             <div>
               <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400 mb-4">The Design Intent</h3>
               <p className="text-gray-600 text-base leading-relaxed font-light">
-                La Isla marks Vianaar’s initial, highly intentional expansion into South Goa. Designed to follow the natural, organic contours of the earth rather than forcing structural boxes upon it, the layout balances community with complete residential privacy. Residences feature low-thermal-conductivity engineering to block radiant heat, while deep verandahs and shaded open thresholds capture incoming local breezes seamlessly.
+                La Isla marks Vianaar’s initial, highly intentional expansion into South Goa's pristine Loliem territory. Designed to follow the natural, organic contours of the earth rather than forcing structural boxes upon it, the layout perfectly places a luxury resident clubhouse within a 4-minute drive from South Goa's most breathtaking tropical beach environment. Residences feature low-thermal-conductivity engineering to block radiant heat, while deep verandahs and shaded open thresholds capture incoming local breezes seamlessly.
               </p>
             </div>
 
@@ -126,7 +162,7 @@ const LaIslaDetailsSection = () => {
             <div>
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xs font-bold uppercase tracking-[0.3em] text-gray-400">Villa Typologies & Manifests</h3>
-                <span className="text-[11px] text-gray-500 font-medium">Premium Dynamic Layouts</span>
+                <span className="text-[11px] text-gray-500 font-medium">Loliem Inventory Metrics</span>
               </div>
               
               <div className="border border-gray-100 rounded-none divide-y divide-gray-100">
@@ -135,16 +171,24 @@ const LaIslaDetailsSection = () => {
                     key={idx} 
                     className="p-5 flex flex-col sm:flex-row sm:items-start justify-between gap-4 bg-white hover:bg-gray-50/40 transition-colors"
                   >
-                    <div className="space-y-1.5 max-w-xl">
+                    <div className="space-y-2 max-w-xl">
                       <div className="flex items-center gap-2.5">
                         <h4 className="font-bold text-base text-brand-primary tracking-tight">{villa.name}</h4>
                         <span className="bg-brand-primary/5 text-brand-primary border border-brand-primary/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider">
                           {villa.configuration}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 leading-relaxed font-light">
-                        {villa.description}
-                      </p>
+                      
+                      {/* Metric Mapping Layout Grid */}
+                      <div className="text-xs text-gray-500 flex flex-wrap gap-x-4 gap-y-1 font-light">
+                        <span><strong className="font-semibold text-brand-primary">Built Up:</strong> {villa.builtUp}</span>
+                        <span className="text-gray-200">|</span>
+                        <span><strong className="font-semibold text-brand-primary">Carpet:</strong> {villa.carpet}</span>
+                        <span className="text-gray-200">|</span>
+                        <span><strong className="font-semibold text-brand-primary">Garden:</strong> {villa.garden}</span>
+                        <span className="text-gray-200">|</span>
+                        <span><strong className="font-semibold text-brand-primary">Plot size:</strong> {villa.plot}</span>
+                      </div>
                     </div>
 
                     <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 min-w-[120px] pt-1">
