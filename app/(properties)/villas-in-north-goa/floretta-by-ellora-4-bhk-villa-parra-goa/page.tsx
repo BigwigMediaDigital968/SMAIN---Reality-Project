@@ -101,9 +101,9 @@ const FlorettaDetailsSection = () => {
                 Actual Video <ExternalLink size={12} />
               </a>
               <span className="text-gray-300">|</span>
-              <a href="https://photos.app.goo.gl/bEixsmPxWuxzotY37" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-brand-accent hover:underline">
+              {/* <a href="https://photos.app.goo.gl/bEixsmPxWuxzotY37" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-brand-accent hover:underline">
                 Media Assets <ExternalLink size={12} />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
