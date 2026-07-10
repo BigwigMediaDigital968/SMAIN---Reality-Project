@@ -6,13 +6,19 @@ import { Menu, X, ArrowRight, ChevronDown, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname
 
-const Navbar = () => {
+type NavbarProps = {
+  isScrolled?: boolean;
+};
+
+const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
   const pathname = usePathname(); // Get current route
   const [isOpen, setIsOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const [showTopBar, setShowTopBar] = useState(true);
-  const [isScrolled, setIsScrolled] = useState(false);
+  // const [isScrolled, setIsScrolled] = useState( forceScrolled || false);
+  const [scrollState, setScrollState] = useState(false);
+
 
   // const navLinks = [
   //   { name: "Home", href: "/" },
@@ -32,8 +38,8 @@ const Navbar = () => {
       name: "Home For Sale",
       href: "#",
       submenu: [
-        { name: "Villas in North Goa", href: "#" },
-        { name: "Villas in South Goa", href: "#" },
+        { name: "Villas in North Goa", href: "/villas-in-north-goa" },
+        { name: "Villas in South Goa", href: "/villas-in-south-goa" },
       ],
     },
     { name: "Completed Homes", href: "#" },
@@ -44,14 +50,15 @@ const Navbar = () => {
     },
   ];
 
-  useEffect(() => {
+   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // trigger after 50px
+      setScrollState(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+    const isScrolled = customScrolled ?? scrollState;
 
   const textColor = isScrolled ? "text-brand-primary" : "text-white";
 

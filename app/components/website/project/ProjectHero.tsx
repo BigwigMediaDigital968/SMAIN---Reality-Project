@@ -2,7 +2,27 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Hammer, HardHat, Home, Sparkles } from "lucide-react";
 
-const ProjectHero = () => {
+type ProjectHeroProps = {
+  eyebrow?: string;
+  heading?: React.ReactNode;
+  description?: string;
+  img?:string;
+  img2?:string;
+};
+
+const ProjectHero = ({
+  eyebrow = "Our Portfolio",
+  heading = (
+    <>
+      Legacy in <br />
+      <span className="text-[#ffcc33]">Every Beam.</span>
+    </>
+  ),
+  description = "",
+  img,
+  img2="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
+}: ProjectHeroProps) => {
+
   const { scrollY } = useScroll();
 
   // Parallax offsets for background and foreground elements
@@ -42,17 +62,15 @@ const ProjectHero = () => {
               transition={{ delay: 0.3 }}
               className="inline-block px-4 py-1 border border-[#ffcc33] text-[#ffcc33] text-xs tracking-widest uppercase mb-6"
             >
-              Our Portfolio
+              {eyebrow}
             </motion.div>
 
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-              Legacy in <br />
-              <span className="text-[#ffcc33]">Every Beam.</span>
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-8">
+              {heading}
             </h1>
 
             <p className="text-xl text-gray-300 mb-10 max-w-lg leading-relaxed">
-              From historic renovations to modern architectural wonders, explore
-              how we turn blueprints into monuments of excellence.
+              {description}
             </p>
 
             {/* Category Pills */}
@@ -83,7 +101,7 @@ const ProjectHero = () => {
               className="absolute top-0 right-0 w-[85%] h-[80%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10"
             >
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
+                src={img||"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"}
                 alt="Modern skyscraper"
                 className="w-full h-full object-cover"
               />
@@ -99,7 +117,7 @@ const ProjectHero = () => {
               className="absolute bottom-0 left-0 w-[60%] h-[50%] rounded-2xl overflow-hidden shadow-2xl border-4 border-[#ffcc33]/30"
             >
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800"
+                src={img2}
                 alt="Interior renovation"
                 className="w-full h-full object-cover"
               />
