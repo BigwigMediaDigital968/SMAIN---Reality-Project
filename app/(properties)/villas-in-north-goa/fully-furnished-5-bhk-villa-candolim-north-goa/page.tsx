@@ -52,7 +52,7 @@ interface PropertyDetails {
 // --- Sample Data Mapping to Your Provided Content ---
 const propertyData: PropertyDetails = {
     id: "VP290124-165804-4478",
-    title: "The Azalea — 5 BHK Residential Independent House / Villa",
+    title: "The Azalea - 5 BHK Residential Independent House / Villa",
     tagline: "Exclusive Field-Facing Luxury Villas in Candolim",
     price: "₹9 Crores",
     altPrice: "Field View Villa variant available at ₹10.5 Crores",
