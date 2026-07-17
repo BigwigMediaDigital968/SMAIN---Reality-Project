@@ -9,7 +9,7 @@ export interface ILead extends Document {
   email: string;
   description: string;
   newsletter: boolean;
-  status: "new" | "contacted" | "qualified" | "closed";
+  status: "new" | "contacted" | "in_progress" | "closed_won" | "rejected";
   source: string;
   createdAt: string;
   updatedAt: string;
@@ -27,7 +27,7 @@ const LeadSchema = new Schema<ILead>(
     newsletter: { type: Boolean, default: false },
     status: {
       type: String,
-      enum: ["new", "contacted", "qualified", "closed"],
+      enum: ["new", "contacted", "in_progress", "closed_won", "rejected"],
       default: "new",
     },
     source: { type: String, default: "website" },

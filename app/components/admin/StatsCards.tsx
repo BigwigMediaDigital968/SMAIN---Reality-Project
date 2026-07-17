@@ -7,7 +7,6 @@ import {
 
 const STATS_STATUS: LeadStatus[] = [
   "new",
-  "assigned",
   "contacted",
   "in_progress",
   "closed_won",

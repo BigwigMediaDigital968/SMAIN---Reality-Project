@@ -6,7 +6,6 @@ import type { LeadFilters, LeadStatus } from "@/app/types/leads";
 const STATUSES: (LeadStatus | "all")[] = [
   "all",
   "new",
-  "assigned",
   "contacted",
   "in_progress",
   "closed_won",
@@ -79,7 +78,6 @@ export default function LeadFilters({
           <div className="flex gap-2 ml-auto flex-wrap">
             {(
               [
-                "assigned",
                 "contacted",
                 "in_progress",
                 "closed_won",

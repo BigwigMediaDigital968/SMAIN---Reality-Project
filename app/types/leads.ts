@@ -1,6 +1,5 @@
 export type LeadStatus =
   | "new"
-  | "assigned"
   | "contacted"
   | "in_progress"
   | "closed_won"
@@ -54,7 +53,6 @@ export type LeadFilters = {
 
 export const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
   new: "New",
-  assigned: "Assigned",
   contacted: "Contacted",
   in_progress: "In Progress",
   closed_won: "Closed / Won",
@@ -63,7 +61,6 @@ export const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
 
 export const LEAD_STATUS_COLORS: Record<LeadStatus, string> = {
   new: "#3B82F6",
-  assigned: "#8B5CF6",
   contacted: "#F59E0B",
   in_progress: "#10B981",
   closed_won: "#059669",

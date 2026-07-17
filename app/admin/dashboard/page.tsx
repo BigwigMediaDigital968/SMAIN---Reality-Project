@@ -1,23 +1,34 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Lead } from "@/app/types/leads";
 import StatsCards from "@/app/components/admin/StatsCards";
 import StatusBadge from "@/app/components/admin/actions/StatusBadge";
 import { adminFetch } from "@/app/lib/admin-fetch";
 export default function DashboardPage() {
+  const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     adminFetch("/api/admin/leads")
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401) {
+          localStorage.removeItem("admin_token");
+          router.push("/admin/login");
+          return { leads: [] };
+        }
+        return res.json();
+      })
       .then((data) => {
         setLeads(data.leads ?? []);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
-  }, []);
+      .catch(() => {
+        setLoading(false);
+      });
+  }, [router]);
 
   console.log(leads);
 

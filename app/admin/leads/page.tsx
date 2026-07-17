@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Lead, LeadFilters as Filters, LeadStatus } from "@/app/types/leads";
 import LeadDetailModal from "@/app/components/admin/actions/LeadDetailModal";
 import { adminFetch } from "@/app/lib/admin-fetch";
@@ -64,6 +65,13 @@ const STATUS_OPTIONS: {
     color: "#FBBF24",
     bg: "#2D1B00",
     dot: "#F59E0B",
+  },
+  {
+    value: "in_progress",
+    label: "In Progress",
+    color: "#10B981",
+    bg: "#022C22",
+    dot: "#10B981",
   },
   {
     value: "closed_won",
@@ -337,7 +345,7 @@ function StatusDropdown({
 }
 
 // ── API helpers ───────────────────────────────────────────────────────────────
-async function apiFetchLeads(filters: Filters): Promise<Lead[]> {
+async function apiFetchLeads(filters: Filters, onUnauthorized?: () => void): Promise<Lead[]> {
   const params = new URLSearchParams();
   if (filters.status && filters.status !== "all")
     params.set("status", filters.status);
@@ -345,6 +353,11 @@ async function apiFetchLeads(filters: Filters): Promise<Lead[]> {
   if (filters.region) params.set("region", filters.region);
   if (filters.search) params.set("search", filters.search);
   const res = await adminFetch(`/api/admin/leads?${params.toString()}`);
+  if (res.status === 401) {
+    localStorage.removeItem("admin_token");
+    onUnauthorized?.();
+    throw new Error("Unauthorized");
+  }
   if (!res.ok) throw new Error("Failed to fetch leads");
   const data = await res.json();
   return data.leads ?? [];
@@ -384,6 +397,7 @@ async function apiBulkStatus(ids: string[], status: LeadStatus) {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function LeadsPage() {
+  const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<Filters>({ status: "all" });
@@ -412,18 +426,23 @@ export default function LeadsPage() {
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await apiFetchLeads({
-        ...filters,
-        search: search || undefined,
-      });
+      const data = await apiFetchLeads(
+        {
+          ...filters,
+          search: search || undefined,
+        },
+        () => router.push("/admin/login")
+      );
       setLeads(data);
       setSelected(new Set());
-    } catch {
-      showToast("Failed to load leads", "error");
+    } catch (err:any) {
+      if (err.message !== "Unauthorized") {
+        showToast("Failed to load leads", "error");
+      }
     } finally {
       setLoading(false);
     }
-  }, [filters, search, showToast]);
+  }, [filters, search, showToast, router]);
 
   // Debounced search
   useEffect(() => {

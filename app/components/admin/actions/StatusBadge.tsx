@@ -3,7 +3,6 @@ import type { LeadStatus } from "@/app/types/leads";
 
 const BG_MAP: Record<LeadStatus, string> = {
   new: "bg-blue-500/10 border-blue-500/20 text-blue-400",
-  assigned: "bg-violet-500/10 border-violet-500/20 text-violet-400",
   contacted: "bg-amber-500/10 border-amber-500/20 text-amber-400",
   in_progress: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
   closed_won: "bg-green-500/10 border-green-500/20 text-green-400",
