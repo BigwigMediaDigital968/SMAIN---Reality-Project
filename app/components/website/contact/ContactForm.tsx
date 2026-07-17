@@ -104,17 +104,37 @@ const App = () => {
               </p>
 
               <div className="mt-16 pt-16 border-t border-black/5 hidden lg:block">
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">
-                    Headquarters
-                  </span>
-                  <span className="text-brand-primary font-medium capitalize">
-                    812/A
-                    Gera imperium star <br />
-                    OPP Novotel hotel,
-                    Patto panjim
-                    403001
-                  </span>
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">
+                      Phone
+                    </span>
+                    <span className="text-brand-primary font-medium">
+                      +91 9158506555
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">
+                      Email
+                    </span>
+                    <span className="text-brand-primary font-medium">
+                      smainrealty@gmail.com
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/30">
+                      Address
+                    </span>
+                    <span className="text-brand-primary font-medium capitalize">
+                      Gera Imperium Star Office No. 812-A, 8th Floor
+                      <br />
+                      Opposite Hotel Novotel
+                      <br />
+                      Patto Centre, Panjim, Goa, India
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -171,6 +191,7 @@ const App = () => {
                         </option>
                         <option value="Industrial">Luxury Villas</option>
                         <option value="Careers">Renovations</option>
+                        <option value="others">Others</option>
                       </select>
                     </div>
                     <div>

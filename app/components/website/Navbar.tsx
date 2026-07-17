@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, ChevronDown, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname
+import ModalPopup from "./Popup";
 
 type NavbarProps = {
   isScrolled?: boolean;
@@ -13,6 +14,7 @@ type NavbarProps = {
 const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
   const pathname = usePathname(); // Get current route
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalopen, setISModalopen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const [showTopBar, setShowTopBar] = useState(true);
@@ -48,6 +50,11 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
       href: "#",
       submenu: [],
     },
+    {
+      name: "Contact Us",
+      href: "/contact-us",
+      submenu: [],
+    },
   ];
 
    useEffect(() => {
@@ -63,6 +70,9 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
   const textColor = isScrolled ? "text-brand-primary" : "text-white";
 
   return (
+    <>
+    
+          
     <motion.nav
       animate={{
         backgroundColor: isScrolled
@@ -160,15 +170,15 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
               );
             })}
 
-            <Link
-              href="/contact-us"
-              className={`ml-4 px-5 py-2 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${isScrolled
+            <button
+            onClick={()=>setISModalopen(true)}
+              className={`cursor-pointer ml-4 px-5 py-2 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${isScrolled
                   ? "bg-brand-primary text-white border-brand-primary hover:bg-brand-accent"
                   : "bg-white/10 text-white border-white/30 backdrop-blur-md hover:bg-brand-accent hover:text-white"
                 }`}
             >
               Enquire Now
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Toggle */}
@@ -244,19 +254,21 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
               </div>
 
               <div className="p-8 bg-brand-primary">
-                <Link
-                  href="/contact-us"
-                  onClick={() => setIsOpen(false)}
-                  className="w-full flex items-center justify-between text-white font-bold uppercase tracking-widest text-xs cursor-pointer"
+                <button
+                  onClick={() => {setIsOpen(false); setISModalopen(true);}}
+                  className="w-full cursor-pointer flex items-center justify-between text-white font-bold uppercase tracking-widest text-xs cursor-pointer"
                 >
                   Enquire Now <ArrowRight size={16} />
-                </Link>
+                </button>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
     </motion.nav>
+    <ModalPopup isOpen={isModalopen} onClose={() => setISModalopen(false)} />
+    
+    </>
   );
 };
 

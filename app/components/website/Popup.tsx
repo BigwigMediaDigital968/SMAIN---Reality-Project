@@ -415,12 +415,36 @@ export default function ModalPopup({ isOpen, onClose }: Props) {
                 }}
               />
               <div className="absolute bottom-8 left-8 right-8">
-                <p className="text-white text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
-                  Headquarters
-                </p>
-                <p className="text-white font-semibold text-sm">
-                  100 SMAIN Plaza, Dubai, UAE
-                </p>
+
+                <div className="space-y-2 text-white">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">
+                        Phone
+                      </p>
+                      <p className="font-medium text-sm">+91 91585 06555</p>
+                    </div>
+
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">
+                        Email
+                      </p>
+                      <p className="font-medium text-sm break-all">
+                        smainrealty@gmail.com
+                      </p>
+                    </div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">
+                      Headquarters
+                    </p>
+                    <p className="font-semibold text-sm">
+                      Gera Imperium Star Office No. 812-A, 8th Floor
+                      <br />
+                      Opposite Hotel Novotel
+                      <br />
+                      Patto Centre, Panjim, Goa, India
+                    </p>
+                  </div>
+
+
               </div>
             </div>
           </motion.div>

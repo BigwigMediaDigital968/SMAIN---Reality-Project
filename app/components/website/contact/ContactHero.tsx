@@ -79,7 +79,7 @@ const ContactHero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-white/60 text-lg lg:text-xl font-light leading-relaxed max-w-sm"
+              className="text-white/80 text-lg lg:text-xl font-light leading-relaxed max-w-sm"
             >
               Connect with our specialized teams to discuss your vision, from
               luxury residential builds to large-scale infrastructure.
