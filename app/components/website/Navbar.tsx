@@ -118,7 +118,7 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
                 >
                   <Link
                     href={link.href}
-                    className={`px-4 py-2 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center gap-1 relative ${isActive
+                    className={`px-3 py-2 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center gap-1 relative ${isActive
                         ? "text-brand-accent"
                         : `${textColor} hover:text-brand-accent`
                       }`}
