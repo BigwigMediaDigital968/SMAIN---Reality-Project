@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { adminFetch } from "@/app/lib/admin-fetch";
+import PropertyStatsCards from "@/app/components/admin/PropertyStatsCards";
 import {
   Search,
   Trash2,
@@ -371,6 +372,9 @@ export default function PropertiesPage() {
           </button>
         </div>
       </div>
+
+      {/* ── Stats Cards ── */}
+      <PropertyStatsCards properties={properties} />
 
       {/* ── Filters ── */}
       <div className="flex flex-col lg:flex-row gap-3 mb-5">

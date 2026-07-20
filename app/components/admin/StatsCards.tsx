@@ -25,7 +25,7 @@ export default function StatsCards({ leads }: { leads: Lead[] }) {
   );
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 mb-8">
       {/* Total */}
       <div className="col-span-2 lg:col-span-1 bg-[#111118] border border-[#1E1E2E] rounded-2xl p-5">
         <p className="text-[#71717A] text-xs font-medium uppercase tracking-widest mb-3">

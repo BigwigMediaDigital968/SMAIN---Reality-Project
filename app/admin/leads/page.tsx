@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Lead, LeadFilters as Filters, LeadStatus } from "@/app/types/leads";
 import LeadDetailModal from "@/app/components/admin/actions/LeadDetailModal";
+import StatsCards from "@/app/components/admin/StatsCards";
 import { adminFetch } from "@/app/lib/admin-fetch";
 import {
   Search,
@@ -580,6 +581,9 @@ export default function LeadsPage() {
           Refresh
         </button>
       </div>
+
+      {/* ── Stats Cards ── */}
+      <StatsCards leads={leads} />
 
       {/* ── Filters ── */}
       <div className="flex flex-col lg:flex-row gap-3 mb-5">
