@@ -93,6 +93,27 @@ export async function getProperty(id: string) {
   return serialize(property);
 }
 
+export async function getPropertyBySlugOrId(identifier: string) {
+  await connectDB();
+  let property = null;
+  
+  // First try to find by slug
+  property = await Property.findOne({ slug: identifier });
+  
+  // If not found by slug, try by MongoDB ID
+  if (!property) {
+    try {
+      property = await Property.findById(identifier);
+    } catch {
+      // Invalid MongoDB ID format, return null
+      return null;
+    }
+  }
+  
+  if (!property) return null;
+  return serialize(property);
+}
+
 export async function getProperties(filters: {
   status?: boolean | "all";
   search?: string;

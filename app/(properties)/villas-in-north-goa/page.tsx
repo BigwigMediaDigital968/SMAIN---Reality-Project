@@ -4,6 +4,7 @@ import HomeProject from "@/app/components/website/home/HomeProjects";
 import WhatsAppButton from "@/app/components/website/home/Whatapp";
 import Navbar from "@/app/components/website/Navbar";
 import ProjectHero from "@/app/components/website/project/ProjectHero";
+import api from "@/app/lib/api";
 
 const projects: any[] = [
     {
@@ -30,8 +31,10 @@ const projects: any[] = [
     },
 ];
 
-
-export default function page() {
+export default async function page() {
+    const {data} = await api.get("/api/properties?location=north-goa");
+    const properties = data.properties;
+    console.log(properties)
     return (
         <>
             <Navbar />
@@ -47,7 +50,7 @@ export default function page() {
                 img2="/properties/floretta-by-ellora/DJI_20250129165952_0366_D.jpg"
                 description="Luxury villas, premium apartments and investment-worthy homes near Goa's most sought-after beaches." />
 
-            <HomeProject properties={projects} />
+            <HomeProject properties={properties} />
             <HomeLeadForm />
             {/* <NewsLetter /> */}
         </>

@@ -2,17 +2,10 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, IndianRupee, MapPin } from "lucide-react";
 import Link from "next/link";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  href:string;
-}
+
 
 
 const containerVariants: Variants = {
@@ -67,7 +60,7 @@ const HomeProject = ({
             </h2>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -83,7 +76,7 @@ const HomeProject = ({
                 className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
               />
             </Link>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Projects Grid */}
@@ -97,7 +90,7 @@ const HomeProject = ({
           {properties.map((project: any) => (
 
             <Link
-              href={`${project.href}`}
+              href={`/property/${project.slug}`} // Added a leading slash to ensure clean routing
               className="block"
             >
               <motion.div
@@ -105,7 +98,7 @@ const HomeProject = ({
                 variants={itemVariants}
                 className="group cursor-pointer"
               >
-                <div className="relative aspect-[1/1] overflow-hidden mb-6 bg-gray-100">
+                <div className="relative aspect-[1/1] overflow-hidden mb-5 bg-gray-100">
                   {/* Reveal Overlay Effect */}
                   <motion.div
                     initial={{ scaleY: 1 }}
@@ -121,26 +114,45 @@ const HomeProject = ({
                   />
 
                   <motion.img
-                    src={project.image}
-                    alt={project.title}
+                    src={project.propertyImages?.[0] || "/placeholder-property.jpg"} // Safely access image array
+                    alt={project.propertyName}
                     className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-110"
                   />
 
                   <div className="absolute inset-0 bg-brand-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-                  <div className="absolute top-6 left-6 z-10">
-                    <span className="bg-white px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-primary shadow-sm">
-                      {project.category}
+                  {/* Floating Badges */}
+                  <div className="absolute top-6 left-6 z-10 flex flex-col gap-2">
+                    <span className="bg-white px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-brand-primary shadow-sm w-fit">
+                      {project.propertyType}
                     </span>
+                    {project.listingType && (
+                      <span className="bg-brand-primary text-white px-3 py-1 text-[9px] font-bold uppercase tracking-widest shadow-sm w-fit">
+                        For {project.listingType}
+                      </span>
+                    )}
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-2xl font-bold text-brand-primary tracking-tight group-hover:text-brand-accent transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-500">
+                <div className="space-y-2.5">
+                  {/* Property Name & Action Arrow */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h3 className="text-2xl font-bold text-brand-primary tracking-tight group-hover:text-brand-accent transition-colors duration-300">
+                        {project.propertyName}
+                      </h3>
+
+                      {/* Location Vector Indicator */}
+                      <div className="flex items-center gap-1.5 text-gray-400 group-hover:text-gray-600 transition-colors">
+                        <MapPin size={14} className="text-brand-primary/60 shrink-0" />
+                        <span className="text-xs font-medium tracking-wide capitalize">
+                          {project.subArea ? `${project.subArea}, ` : ""}
+                          {project.location?.replace("-", " ") || "North Goa"}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-500">
                       <ArrowUpRight
                         size={16}
                         className="text-brand-primary group-hover:text-brand-accent transition-colors"
@@ -148,14 +160,26 @@ const HomeProject = ({
                     </div>
                   </div>
 
-                  <p className="text-gray-500 text-sm leading-relaxed max-w-[90%] font-light">
-                    {project.description}
+                  {/* Dynamic Description Fallback */}
+                  <p className="text-gray-500 text-sm leading-relaxed max-w-[95%] font-light line-clamp-2">
+                    {project.description || project.propertyDetails?.replace(/<[^>]*>/g, '')}
                   </p>
 
-                  <div className="pt-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary/40 group-hover:text-brand-primary transition-colors">
-                      Get A Quote —
-                    </span>
+                  {/* Price Grid & Valuation */}
+                  <div className="pt-1 flex items-center justify-between border-t border-gray-100 mt-2">
+                    <div>
+                      <p className="text-[9px] uppercase tracking-widest font-bold text-gray-400">Valuation</p>
+                      <div className="flex items-center text-base font-extrabold text-brand-primary">
+                        <IndianRupee size={14} className="mr-0.5" />
+                        <span>{project.price || "Price on Request"}</span>
+                      </div>
+                    </div>
+
+                    <div className="self-end pb-0.5">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary/40 group-hover:text-brand-primary transition-colors">
+                        Get A Quote —
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>

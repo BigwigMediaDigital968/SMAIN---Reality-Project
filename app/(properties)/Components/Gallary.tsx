@@ -65,14 +65,14 @@ export default function Gallery({ images, alt = "property view" }: GalleryProps)
             
             {activeImageIdx !== null && (
                 <div className="fixed inset-0 bg-black/95 z-[99999] flex items-center justify-between p-2 md:p-12">
-                    <button onClick={() => setActiveImageIdx(null)} className="absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white z-50 p-2">
+                    <button onClick={() => setActiveImageIdx(null)} className="cursor-pointer absolute top-4 right-4 md:top-6 md:right-6 text-white/70 hover:text-white z-50 p-2">
                         <X size={24} className="md:w-7 md:h-7" />
                     </button>
 
                     <button
                         disabled={activeImageIdx === 0}
                         onClick={() => setActiveImageIdx(prev => prev !== null && prev > 0 ? prev - 1 : prev)}
-                        className="text-white/50 hover:text-white disabled:opacity-20 transition-opacity p-2 z-10 shrink-0"
+                        className="text-white/50 hover:text-white cursor-pointer disabled:opacity-20 transition-opacity p-2 z-10 shrink-0"
                     >
                         <ChevronLeft size={28} className="md:w-9 md:h-9" />
                     </button>
@@ -91,7 +91,7 @@ export default function Gallery({ images, alt = "property view" }: GalleryProps)
                     <button
                         disabled={activeImageIdx === images.length - 1}
                         onClick={() => setActiveImageIdx(prev => prev !== null && prev < images.length - 1 ? prev + 1 : prev)}
-                        className="text-white/50 hover:text-white disabled:opacity-20 transition-opacity p-2 z-10 shrink-0"
+                        className="text-white/50 hover:text-white cursor-pointer disabled:opacity-20 transition-opacity p-2 z-10 shrink-0"
                     >
                         <ChevronRight size={28} className="md:w-9 md:h-9" />
                     </button>
