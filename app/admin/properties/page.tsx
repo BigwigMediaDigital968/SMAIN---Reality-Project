@@ -12,12 +12,14 @@ import {
   Loader2,
   Home,
   Edit,
+  Eye,
 } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface Property {
   id: string;
   propertyName: string;
+  location?: string;
   slug: string;
   listingType: "sale" | "rent";
   propertyType: string;
@@ -256,6 +258,8 @@ export default function PropertiesPage() {
       setLoading(false);
     }
   }, [filters, search, showToast, router]);
+
+  console.log(properties)
 
   // Debounced search
   useEffect(() => {
@@ -496,7 +500,7 @@ export default function PropertiesPage() {
         <div
           className="hidden lg:grid items-center px-5 py-3"
           style={{
-            gridTemplateColumns: "44px 2fr 1fr 1fr 100px 140px",
+            gridTemplateColumns: "44px 2fr 1fr 1fr 1fr 100px 140px",
             borderBottom: "1px solid #1E1E2E",
           }}
         >
@@ -515,7 +519,7 @@ export default function PropertiesPage() {
               </svg>
             )}
           </button>
-          {["Property", "Location", "Type & Price", "Status", "Actions"].map((h) => (
+          {["Property", "Location", "Address", "Type & Price", "Status", "Actions"].map((h) => (
             <span
               key={h}
               className="text-[10px] font-bold uppercase tracking-widest"
@@ -561,7 +565,7 @@ export default function PropertiesPage() {
                 key={property.id}
                 className="hidden lg:grid items-center px-5 py-3.5 transition-colors group"
                 style={{
-                  gridTemplateColumns: "44px 2fr 1fr 1fr 100px 140px",
+                  gridTemplateColumns: "44px 2fr 1fr 1fr 1fr 100px 140px",
                   borderBottom: isLast ? "none" : "1px solid #1E1E2E",
                   backgroundColor: isSelected ? "#6366F106" : "transparent",
                 }}
@@ -632,6 +636,14 @@ export default function PropertiesPage() {
 
                 {/* Location */}
                 <div className="min-w-0 pr-4">
+                  <p className="text-sm truncate capitalize" style={{ color: "#D4D4D8" }}>
+                    {property.location?.split("-").join(" ")}
+                  </p>
+                </div>
+                
+                {/* Address */}
+
+                <div className="min-w-0 pr-4">
                   <p className="text-sm truncate" style={{ color: "#D4D4D8" }}>
                     {property.address}
                   </p>
@@ -660,7 +672,7 @@ export default function PropertiesPage() {
 
                 {/* Status */}
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest whitespace-nowrap ${
+                  className={`inline-flex justify-center items-center gap-1.5 px-1 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest whitespace-nowrap ${
                     property.status ? "bg-[#022C22] text-[#10B981]" : "bg-[#2D0A0A] text-[#F87171]"
                   }`}
                   style={{
@@ -681,7 +693,15 @@ export default function PropertiesPage() {
                 </span>
 
                 {/* Actions */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 px-2">
+                  <button
+                    onClick={() => router.push(`/admin/properties/view/${property.id}`)}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer transition-all hover:opacity-80"
+                    style={{ backgroundColor: "#1E1E2E", color: "#60A5FA" }}
+                    title="View property"
+                  >
+                    <Eye size={14} />
+                  </button>
                   <button
                     onClick={() => router.push(`/admin/properties/${property.id}`)}
                     className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer transition-all hover:opacity-80"

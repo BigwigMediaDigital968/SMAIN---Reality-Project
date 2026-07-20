@@ -37,6 +37,7 @@ export async function GET(req: NextRequest) {
       search: searchParams.get("search") || undefined,
       listingType: searchParams.get("listingType") || undefined,
       propertyType: searchParams.get("propertyType") || undefined,
+      location: searchParams.get("location") || undefined,
     };
 
     // Convert status string to boolean
@@ -54,6 +55,7 @@ export async function GET(req: NextRequest) {
       search: filters.search,
       listingType: filters.listingType,
       propertyType: filters.propertyType,
+      location: filters.location,
     });
     return NextResponse.json({ properties });
   } catch (err) {
@@ -114,6 +116,10 @@ export async function POST(req: NextRequest) {
 
     const body = JSON.parse(rawData);
     const imageOrder = JSON.parse(rawImageOrder) as string[];
+
+    if (!body.location) {
+      body.location = "north-goa";
+    }
 
     // 2. Process Auto-Slug generation
     if (!body.slug && body.propertyName) {
@@ -176,11 +182,44 @@ export async function PATCH(req: NextRequest) {
   const authErr = await requireAdmin(req);
   if (authErr) return authErr;
 
+  const uploadedUrls: string[] = [];
+
   try {
-    const body = await req.json();
+    const contentType = req.headers.get("content-type") || "";
+    let body: Record<string, any> = {};
+    let imageOrder: string[] = [];
+    let newFiles: File[] = [];
+
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await req.formData();
+      const rawData = formData.get("data") as string | null;
+      const rawImageOrder = formData.get("imageOrder") as string | null;
+      const idValue = formData.get("id") as string | null;
+      newFiles = formData.getAll("images") as File[];
+
+      if (rawData) {
+        body = JSON.parse(rawData);
+      }
+
+      if (rawImageOrder) {
+        imageOrder = JSON.parse(rawImageOrder) as string[];
+      }
+
+      if (idValue) {
+        body.id = idValue;
+      }
+    } else {
+      body = await req.json();
+    }
+
+    console.log(body)
 
     if (!body.id) {
       return NextResponse.json({ error: "id is required" }, { status: 400 });
+    }
+
+    if (!body.location) {
+      body.location = "north-goa";
     }
 
     // Generate slug from propertyName if not provided
@@ -191,11 +230,46 @@ export async function PATCH(req: NextRequest) {
         .replace(/(^-|-$)/g, "");
     }
 
+    if (imageOrder.length > 0) {
+      const uploadedNewUrls: string[] = [];
+
+      for (const file of newFiles) {
+        const arrayBuffer = await file.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        const secureUrl = await uploadToCloudinary(buffer);
+        uploadedUrls.push(secureUrl);
+        uploadedNewUrls.push(secureUrl);
+      }
+
+      body.propertyImages = imageOrder
+        .map((token: string) => {
+          if (token.startsWith("existing:")) {
+            return token.replace("existing:", "");
+          }
+
+          if (token.startsWith("new:")) {
+            const index = parseInt(token.replace("new:", ""), 10);
+            return uploadedNewUrls[index];
+          }
+
+          return "";
+        })
+        .filter(Boolean);
+    }
+
     const { id, ...data } = body;
     await updateProperty(id, data);
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[PATCH /api/admin/properties]", err);
+
+    if (uploadedUrls.length > 0) {
+      console.log(
+        `Rollback triggered. Cleaning up ${uploadedUrls.length} uploaded files from Cloudinary...`,
+      );
+      await Promise.all(uploadedUrls.map((url) => deleteFromCloudinary(url)));
+    }
+
     return NextResponse.json(
       { error: "Failed to update property" },
       { status: 500 },

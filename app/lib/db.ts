@@ -98,6 +98,7 @@ export async function getProperties(filters: {
   search?: string;
   listingType?: string;
   propertyType?: string;
+  location?: string;
 } = {}) {
   await connectDB();
 
@@ -108,6 +109,7 @@ export async function getProperties(filters: {
   }
   if (filters.listingType) query.listingType = filters.listingType;
   if (filters.propertyType) query.propertyType = filters.propertyType;
+  if (filters.location) query.location = filters.location;
 
   if (filters.search) {
     const term = filters.search;
@@ -122,9 +124,61 @@ export async function getProperties(filters: {
   return properties.map(serialize);
 }
 
-export async function updateProperty(id: string, data: Partial<IProperty>) {
+export async function getPropertiesPaginated(
+  filters: {
+    status?: boolean | "all";
+    search?: string;
+    listingType?: string;
+    propertyType?: string;
+    location?: string;
+  } = {},
+  options: { page?: number; limit?: number } = {},
+) {
   await connectDB();
-  await Property.findByIdAndUpdate(id, { ...data, updatedAt: new Date() });
+
+  const page = Math.max(1, Number(options.page) || 1);
+  const limit = Math.max(1, Math.min(50, Number(options.limit) || 10));
+  const skip = (page - 1) * limit;
+
+  const query: Record<string, any> = {};
+
+  if (filters.status !== undefined && filters.status !== "all") {
+    query.status = filters.status;
+  }
+  if (filters.listingType) query.listingType = filters.listingType;
+  if (filters.propertyType) query.propertyType = filters.propertyType;
+  if (filters.location) query.location = filters.location;
+
+  if (filters.search) {
+    const term = filters.search;
+    query.$or = [
+      { propertyName: { $regex: term, $options: "i" } },
+      { address: { $regex: term, $options: "i" } },
+      { developerName: { $regex: term, $options: "i" } },
+    ];
+  }
+
+  const [properties, total] = await Promise.all([
+    Property.find(query).sort({ createdAt: -1 }).skip(skip).limit(limit),
+    Property.countDocuments(query),
+  ]);
+
+  return {
+    properties: properties.map(serialize),
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.ceil(total / limit),
+    },
+  };
+}
+
+export async function updateProperty(id: string, data: Partial<IProperty>) {
+  console.log(data)
+  await connectDB();
+  const property = await Property.findByIdAndUpdate(id, { ...data, updatedAt: new Date() });
+  console.log(property)
 }
 
 export async function deleteProperty(id: string) {

@@ -34,6 +34,7 @@ interface Property {
   slug: string;
   listingType: "sale" | "rent";
   propertyType: string;
+  location?: string;
   price: string;
   bedroom?: string;
   bathroom?: string | null;
@@ -93,6 +94,7 @@ const DEFAULT_PROPERTY: Partial<Property> = {
   slug: "",
   listingType: "sale",
   propertyType: "Apartment",
+  location: "north-goa",
   price: "",
   bedroom: "",
   bathroom: "",
@@ -334,12 +336,12 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
   const [slugTouched, setSlugTouched] = useState(isEdit);
 
   const [imageItems, setImageItems] = useState<ImageItem[]>(() =>
-  (property?.propertyImages || []).filter(Boolean).map((url) => ({
-    id: crypto.randomUUID(),
-    kind: "existing" as const,
-    url,
-  }))
-);
+    (property?.propertyImages || []).filter(Boolean).map((url) => ({
+      id: crypto.randomUUID(),
+      kind: "existing" as const,
+      url,
+    }))
+  );
 
   const joditConfig = useMemo(
     () => ({
@@ -366,6 +368,29 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
 
   // Auto-generate slug from propertyName as the user types, until they
   // manually edit the slug field themselves.
+  useEffect(() => {
+    if (property) {
+      setFormData({
+        ...(DEFAULT_PROPERTY as Partial<Property>),
+        ...property,
+        location: property.location ?? (DEFAULT_PROPERTY.location as string),
+      });
+      setImageItems(
+        (property.propertyImages || []).filter(Boolean).map((url) => ({
+          id: crypto.randomUUID(),
+          kind: "existing" as const,
+          url,
+        }))
+      );
+      setSlugTouched(isEdit);
+      return;
+    }
+
+    setFormData(DEFAULT_PROPERTY as Partial<Property>);
+    setImageItems([]);
+    setSlugTouched(false);
+  }, [property, isEdit]);
+
   useEffect(() => {
     if (slugTouched) return;
     setFormData((prev) => ({
@@ -476,7 +501,9 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
 
   try {
     const cleanData = {
+      ...(DEFAULT_PROPERTY as Partial<Property>),
       ...formData,
+      location: formData.location ?? (DEFAULT_PROPERTY.location as string),
       highlights: (formData.highlights || []).filter(Boolean),
       featuresAmenities: (formData.featuresAmenities || []).filter(Boolean),
       nearby: (formData.nearby || []).filter(Boolean),
@@ -495,6 +522,8 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
       newFiles.push(item.file as File);
       return `new:${idx}`;
     });
+
+    console.log(cleanData)
 
     const fd = new FormData();
     fd.append("data", JSON.stringify(cleanData));
@@ -610,6 +639,25 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
                   {type}
                 </option>
               ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-[#71717A] mb-1.5">
+              Location *
+            </label>
+            <select
+              name="location"
+              value={formData.location || "north-goa"}
+              onChange={handleChange}
+              className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
+              style={{
+                backgroundColor: "#0A0A0F",
+                border: "1px solid #27272A",
+                color: "#E4E4E7",
+              }}
+            >
+              <option value="north-goa">North Goa</option>
+              <option value="south-goa">South Goa</option>
             </select>
           </div>
           <div>
