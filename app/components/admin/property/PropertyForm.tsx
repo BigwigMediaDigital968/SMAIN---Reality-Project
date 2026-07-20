@@ -35,6 +35,7 @@ interface Property {
   listingType: "sale" | "rent";
   propertyType: string;
   location?: string;
+  description?: string;
   price: string;
   bedroom?: string;
   bathroom?: string | null;
@@ -95,6 +96,7 @@ const DEFAULT_PROPERTY: Partial<Property> = {
   listingType: "sale",
   propertyType: "Apartment",
   location: "north-goa",
+  description: "",
   price: "",
   bedroom: "",
   bathroom: "",
@@ -496,57 +498,57 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
   // };
 
   async function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  setSaving(true);
+    e.preventDefault();
+    setSaving(true);
 
-  try {
-    const cleanData = {
-      ...(DEFAULT_PROPERTY as Partial<Property>),
-      ...formData,
-      location: formData.location ?? (DEFAULT_PROPERTY.location as string),
-      highlights: (formData.highlights || []).filter(Boolean),
-      featuresAmenities: (formData.featuresAmenities || []).filter(Boolean),
-      nearby: (formData.nearby || []).filter(Boolean),
-      extraHighlights: (formData.extraHighlights || []).filter(Boolean),
-      extraInfo: (formData.extraInfo || []).filter(Boolean),
-      faqs: (formData.faqs || []).filter((f) => f.question && f.answer),
-    };
-    delete (cleanData as any).propertyImages; // images handled separately below
+    try {
+      const cleanData = {
+        ...(DEFAULT_PROPERTY as Partial<Property>),
+        ...formData,
+        location: formData.location ?? (DEFAULT_PROPERTY.location as string),
+        highlights: (formData.highlights || []).filter(Boolean),
+        featuresAmenities: (formData.featuresAmenities || []).filter(Boolean),
+        nearby: (formData.nearby || []).filter(Boolean),
+        extraHighlights: (formData.extraHighlights || []).filter(Boolean),
+        extraInfo: (formData.extraInfo || []).filter(Boolean),
+        faqs: (formData.faqs || []).filter((f) => f.question && f.answer),
+      };
+      delete (cleanData as any).propertyImages; // images handled separately below
 
-    // Build the order the backend should reassemble, and collect new files
-    // in the same relative order so it can zip "new:<n>" tokens to files[n].
-    const newFiles: File[] = [];
-    const imageOrder = imageItems.map((item) => {
-      if (item.kind === "existing") return `existing:${item.url}`;
-      const idx = newFiles.length;
-      newFiles.push(item.file as File);
-      return `new:${idx}`;
-    });
+      // Build the order the backend should reassemble, and collect new files
+      // in the same relative order so it can zip "new:<n>" tokens to files[n].
+      const newFiles: File[] = [];
+      const imageOrder = imageItems.map((item) => {
+        if (item.kind === "existing") return `existing:${item.url}`;
+        const idx = newFiles.length;
+        newFiles.push(item.file as File);
+        return `new:${idx}`;
+      });
 
-    console.log(cleanData)
+      console.log(cleanData)
 
-    const fd = new FormData();
-    fd.append("data", JSON.stringify(cleanData));
-    fd.append("imageOrder", JSON.stringify(imageOrder));
-    newFiles.forEach((file) => fd.append("images", file)); // appended in "new:<n>" order
+      const fd = new FormData();
+      fd.append("data", JSON.stringify(cleanData));
+      fd.append("imageOrder", JSON.stringify(imageOrder));
+      newFiles.forEach((file) => fd.append("images", file)); // appended in "new:<n>" order
 
-    const url = "/api/admin/properties";
-    const method = isEdit ? "PATCH" : "POST";
-    if (isEdit && property?.id) fd.append("id", property.id);
+      const url = "/api/admin/properties";
+      const method = isEdit ? "PATCH" : "POST";
+      if (isEdit && property?.id) fd.append("id", property.id);
 
-    const res = await adminFetch(url, {
-      method,
-      body: fd, // no Content-Type header — browser sets multipart boundary
-    });
+      const res = await adminFetch(url, {
+        method,
+        body: fd, // no Content-Type header — browser sets multipart boundary
+      });
 
-    if (!res.ok) throw new Error("Failed to save property");
-    router.push("/admin/properties");
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setSaving(false);
+      if (!res.ok) throw new Error("Failed to save property");
+      router.push("/admin/properties");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSaving(false);
+    }
   }
-}
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
@@ -560,44 +562,64 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
           Basic Information
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-xs font-medium text-[#71717A] mb-1.5">
-              Property Name *
-            </label>
-            <input
-              type="text"
-              name="propertyName"
-              value={formData.propertyName || ""}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-              style={{
-                backgroundColor: "#0A0A0F",
-                border: "1px solid #27272A",
-                color: "#E4E4E7",
-              }}
-              placeholder="Enter property name"
-            />
+          <div className="md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-[#71717A] mb-1.5">
+                Property Name *
+              </label>
+              <input
+                type="text"
+                name="propertyName"
+                value={formData.propertyName || ""}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
+                style={{
+                  backgroundColor: "#0A0A0F",
+                  border: "1px solid #27272A",
+                  color: "#E4E4E7",
+                }}
+                placeholder="Enter property name"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-[#71717A] mb-1.5">
+                Slug
+              </label>
+              <input
+                type="text"
+                name="slug"
+                value={formData.slug || ""}
+                onChange={handleChange}
+                onBlur={() =>
+                  setFormData((prev) => ({ ...prev, slug: slugify(prev.slug || "") }))
+                }
+                className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
+                style={{
+                  backgroundColor: "#0A0A0F",
+                  border: "1px solid #27272A",
+                  color: "#E4E4E7",
+                }}
+                placeholder="property-slug"
+              />
+            </div>
           </div>
-          <div>
+          <div className="md:col-span-2 lg:col-span-3">
             <label className="block text-xs font-medium text-[#71717A] mb-1.5">
-              Slug
+              Short Description
             </label>
-            <input
-              type="text"
-              name="slug"
-              value={formData.slug || ""}
+            <textarea
+              name="description"
+              value={formData.description || ""}
               onChange={handleChange}
-              onBlur={() =>
-                setFormData((prev) => ({ ...prev, slug: slugify(prev.slug || "") }))
-              }
+              rows={3}
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
               style={{
                 backgroundColor: "#0A0A0F",
                 border: "1px solid #27272A",
                 color: "#E4E4E7",
               }}
-              placeholder="property-slug"
+              placeholder="Short description for cards and listings"
             />
           </div>
           <div>
@@ -660,6 +682,7 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
               <option value="south-goa">South Goa</option>
             </select>
           </div>
+
           <div>
             <label className="block text-xs font-medium text-[#71717A] mb-1.5">
               Price *

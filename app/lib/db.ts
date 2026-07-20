@@ -175,10 +175,10 @@ export async function getPropertiesPaginated(
 }
 
 export async function updateProperty(id: string, data: Partial<IProperty>) {
-  console.log(data)
+  // console.log(data)
   await connectDB();
   const property = await Property.findByIdAndUpdate(id, { ...data, updatedAt: new Date() });
-  console.log(property)
+  // console.log(property)
 }
 
 export async function deleteProperty(id: string) {

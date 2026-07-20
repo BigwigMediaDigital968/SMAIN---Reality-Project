@@ -259,7 +259,7 @@ export default function PropertiesPage() {
     }
   }, [filters, search, showToast, router]);
 
-  console.log(properties)
+  // console.log(properties)
 
   // Debounced search
   useEffect(() => {

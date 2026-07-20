@@ -14,6 +14,7 @@ export interface IProperty extends Document {
   listingType: "sale" | "rent";
   propertyType: string;
   location?: string;
+  description?: string;
 
   price: string;
 
@@ -82,6 +83,11 @@ const PropertySchema = new Schema<IProperty>(
     location: {
       type: String,
       default: "north-goa",
+    },
+
+    description: {
+      type: String,
+      default: "",
     },
 
     price: {
