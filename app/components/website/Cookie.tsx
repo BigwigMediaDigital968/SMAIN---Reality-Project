@@ -10,6 +10,7 @@ import {
   Lock,
   Settings,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface Preferences {
   essential: boolean;
@@ -83,6 +84,12 @@ const CookieContent: React.FC = () => {
       [key]: !prev[key],
     }));
   };
+
+  const path = usePathname();
+  if (path.startsWith("/admin")) {
+    return null;
+  }
+
 
   if (!isVisible && !showSettings) return null;
 
