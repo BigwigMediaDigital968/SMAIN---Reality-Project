@@ -1,6 +1,8 @@
 import Lead from "./models/leads";
+import Property from "./models/Property";
 import { connectDB } from "./mongodb";
 import type { LeadFilters, LeadStatus } from "@/app/types/leads";
+import type { IProperty } from "./models/Property";
 
 function serialize(doc: any) {
   const obj = doc.toObject ? doc.toObject() : { ...doc };
@@ -75,4 +77,62 @@ export async function bulkUpdateStatus(ids: string[], status: LeadStatus) {
     { _id: { $in: ids } },
     { status, updatedAt: new Date() },
   );
+}
+
+// ─── Property CRUD ───────────────────────────────────────────────────────────
+export async function createProperty(data: Partial<IProperty>) {
+  await connectDB();
+  const property = await Property.create(data);
+  return property._id.toString();
+}
+
+export async function getProperty(id: string) {
+  await connectDB();
+  const property = await Property.findById(id);
+  if (!property) return null;
+  return serialize(property);
+}
+
+export async function getProperties(filters: {
+  status?: boolean | "all";
+  search?: string;
+  listingType?: string;
+  propertyType?: string;
+} = {}) {
+  await connectDB();
+
+  const query: Record<string, any> = {};
+
+  if (filters.status !== undefined && filters.status !== "all") {
+    query.status = filters.status;
+  }
+  if (filters.listingType) query.listingType = filters.listingType;
+  if (filters.propertyType) query.propertyType = filters.propertyType;
+
+  if (filters.search) {
+    const term = filters.search;
+    query.$or = [
+      { propertyName: { $regex: term, $options: "i" } },
+      { address: { $regex: term, $options: "i" } },
+      { developerName: { $regex: term, $options: "i" } },
+    ];
+  }
+
+  const properties = await Property.find(query).sort({ createdAt: -1 });
+  return properties.map(serialize);
+}
+
+export async function updateProperty(id: string, data: Partial<IProperty>) {
+  await connectDB();
+  await Property.findByIdAndUpdate(id, { ...data, updatedAt: new Date() });
+}
+
+export async function deleteProperty(id: string) {
+  await connectDB();
+  await Property.findByIdAndDelete(id);
+}
+
+export async function bulkDeleteProperties(ids: string[]) {
+  await connectDB();
+  await Property.deleteMany({ _id: { $in: ids } });
 }
