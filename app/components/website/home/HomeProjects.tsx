@@ -138,7 +138,7 @@ const HomeProject = ({
                   {/* Property Name & Action Arrow */}
                   <div className="flex items-start justify-between gap-4">
                     <div className="space-y-1">
-                      <h3 className="text-2xl font-bold text-brand-primary tracking-tight group-hover:text-brand-accent transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-brand-primary tracking-tight group-hover:text-brand-accent transition-colors duration-300 line-clamp-1 group-hover:line-clamp-none">
                         {project.propertyName}
                       </h3>
 

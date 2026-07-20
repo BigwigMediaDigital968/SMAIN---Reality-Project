@@ -363,7 +363,8 @@ const PropertyDetailsClient = ({ property }: { property: PropertyData }) => {
                                     {"S"}
                                 </div>
                                 <div>
-                                    <h4 className="text-lg font-bold tracking-tight">Smain</h4>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent block">Smain</span>
+                  <h4 className="text-base font-bold tracking-tight">Luxury Property Specialist</h4>
                                 </div>
                             </div>
 

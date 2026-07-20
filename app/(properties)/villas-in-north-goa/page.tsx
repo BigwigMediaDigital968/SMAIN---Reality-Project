@@ -34,7 +34,7 @@ const projects: any[] = [
 export default async function page() {
     const {data} = await api.get("/api/properties?location=north-goa");
     const properties = data.properties;
-    console.log(properties)
+    // console.log(properties)
     return (
         <>
             <Navbar />

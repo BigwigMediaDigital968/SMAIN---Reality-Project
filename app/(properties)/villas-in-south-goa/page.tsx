@@ -4,22 +4,14 @@ import HomeProject from "@/app/components/website/home/HomeProjects";
 import WhatsAppButton from "@/app/components/website/home/Whatapp";
 import Navbar from "@/app/components/website/Navbar";
 import ProjectHero from "@/app/components/website/project/ProjectHero";
+import api from "@/app/lib/api";
 
 
-const projects: any[] = [
 
-  {
-    id: 3,
-    title: "La Isla by Vianaar",
-    category: "Conscious Living",
-    description:
-      "A deliberate collection of 2, 3, and 4 BHK luxury climate-responsive villas in South Goa, guided by nature and built with circular resource loops.",
-    image:
-      "/properties/La-Isla/property-1 (1).jpeg",
-    href:"/villas-in-south-goa/la-isla-by-vianaar"
-  },
-];
-export default function page() {
+export default async function page() {
+  const {data} = await api.get("/api/properties?location=south-goa");
+    const properties = data.properties;
+    // console.log(properties)
     return (
         <>
             <Navbar />
@@ -33,7 +25,7 @@ export default function page() {
                 }
                 description="Luxury villas, premium apartments and investment-worthy homes near Goa's most sought-after beaches."
                 img="/properties/La-Isla/property-1 (1).jpeg" />
-            <HomeProject properties={projects} />
+            <HomeProject properties={properties} />
             <HomeLeadForm />
             {/* <NewsLetter /> */}
             <Footer />
