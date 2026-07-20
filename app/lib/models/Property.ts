@@ -125,7 +125,8 @@ const PropertySchema = new Schema<IProperty>(
 
     developerName: {
       type: String,
-      required: true,
+      // required: true,
+      default: null,
     },
 
     propertyImages: [

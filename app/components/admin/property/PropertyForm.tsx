@@ -711,7 +711,6 @@ export default function PropertyForm({ property, isEdit = false }: PropertyFormP
               name="developerName"
               value={formData.developerName || ""}
               onChange={handleChange}
-              required
               className="w-full px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
               style={{
                 backgroundColor: "#0A0A0F",
