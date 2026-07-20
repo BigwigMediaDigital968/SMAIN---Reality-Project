@@ -46,7 +46,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div>
+    <div className="p-4 sm:p-6">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Dashboard</h1>
         <p className="text-[#71717A] text-sm mt-1">
