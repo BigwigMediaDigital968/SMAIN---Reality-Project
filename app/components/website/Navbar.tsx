@@ -87,7 +87,7 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
     >
       {/* Main Navbar */}
       <div className="relative">
-        <div className="max-w-7xl mx-auto pl-6 h-20 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
           {/* Logo */}
           <Link
             href="/"
@@ -185,7 +185,7 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
           <div className="lg:hidden flex items-center gap-4">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white p-2 focus:outline-none cursor-pointer"
+              className={`${isScrolled?"text-[#0A1425]":"text-white"} p-2 focus:outline-none cursor-pointer`}
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -217,7 +217,7 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
                 </span>
                 <X
                   size={24}
-                  className="text-white cursor-pointer"
+                  className={`text-white cursor-pointer`}
                   onClick={() => setIsOpen(false)}
                 />
               </div>

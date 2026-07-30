@@ -56,11 +56,11 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-6">
           {/* Main Branding & Navigation Section (Inspired by Dribbble/Clark styles) */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-10 pb-16 border-b border-white/10">
-            <div className="h-[60px]">
+            <div className="h-[60px] flex items-center justify-center overflow-hidden">
               <img
                 src="/smain-realty-white.png"
-                alt=""
-                className="w-full h-full object-center object-cover"
+                alt="Smain Realty"
+                className="max-h-full w-auto object-contain"
               />
             </div>
 
