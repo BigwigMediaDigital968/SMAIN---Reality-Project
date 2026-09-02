@@ -21,19 +21,6 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
   // const [isScrolled, setIsScrolled] = useState( forceScrolled || false);
   const [scrollState, setScrollState] = useState(false);
 
-
-  // const navLinks = [
-  //   { name: "Home", href: "/" },
-  //   {
-  //     name: "About Us",
-  //     href: "/about-us",
-  //     submenu: [],
-  //   },
-  //   { name: "Service", href: "/service" },
-  //   { name: "Projects", href: "/projects" },
-  //   { name: "Contact Us", href: "/contact-us" },
-  // ];
-
   const navLinks = [
     { name: "Home", href: "/" },
     {
@@ -47,7 +34,7 @@ const Navbar = ({ isScrolled: customScrolled }: NavbarProps) => {
     { name: "Completed Homes", href: "#" },
     {
       name: "About Us",
-      href: "#",
+      href: "/about-us",
       submenu: [],
     },
     {
